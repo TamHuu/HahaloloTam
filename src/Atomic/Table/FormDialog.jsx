@@ -4,8 +4,11 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+
 import DialogTitle from "@material-ui/core/DialogTitle";
+
+import { Fragment } from "react";
+
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
 
@@ -18,33 +21,57 @@ export default function FormDialog() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+    <Fragment>
+      <Button
+        variant="outlined"
+        color="secondary"
+        onClick={handleClickOpen}
+        style={{ marginRight: "10px" }}
+      >
         Thêm
+      </Button>
+      <Button
+        variant="outlined"
+        style={{ marginRight: "10px" }}
+        color="secondary"
+        onClick={handleClickOpen}
+      >
+        Xóa
+      </Button>
+
+      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
+        Sửa
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Products</DialogTitle>
+        <DialogTitle id="form-dialog-title">Sản phẩm</DialogTitle>
         <DialogContent>
           <TextField
-            id="standard-basic"
-            label="Standard"
+            id="Thêm"
+            label="Tên sản phẩm"
             fullWidth={true}
             style={{ marginBottom: "2rem" }}
           />
           <TextField
-            id="filled-basic"
-            label="Filled"
+            id="Sửa"
+            label="Miêu tả sản phẩm"
             variant="filled"
             fullWidth={true}
-            style={{ marginBottom: "2rem" }}
+            style={{ marginBottom: "1rem" }}
           />
           <TextField
-            id="outlined-basic"
-            label="Outlined"
+            id="Xóa"
+            label="Số lượng"
+            variant="outlined"
+            fullWidth={true}
+            style={{ marginBottom: "1rem" }}
+          />
+          <TextField
+            id="Thoát"
+            label="Mục khác"
             variant="outlined"
             fullWidth={true}
           />
@@ -52,21 +79,19 @@ export default function FormDialog() {
 
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            submit
+            Thêm
           </Button>
           <Button onClick={handleClose} color="primary">
-            Exit
+            Xóa
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Sửa
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Thoát
           </Button>
         </DialogActions>
       </Dialog>
-
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Xóa
-      </Button>
-
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Sửa
-      </Button>
-    </div>
+    </Fragment>
   );
 }

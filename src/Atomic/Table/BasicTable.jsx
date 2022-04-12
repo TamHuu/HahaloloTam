@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Avatar, Button, colors } from "@material-ui/core";
+
 import FormDialog from "./FormDialog";
 const useStyles = makeStyles({
   table: {
@@ -15,16 +15,16 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(nodot, name, calories, fat, carbs, protein) {
+  return { nodot, name, calories, fat, carbs, protein };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("1", "Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("2", "Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("3", "Eclair", 262, 16.0, 24, 6.0),
+  createData("4", "Cupcake", 305, 3.7, 67, 4.3),
+  createData("5", "Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
 export default function BasicTable({ clickHandler }) {
@@ -35,7 +35,8 @@ export default function BasicTable({ clickHandler }) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Products</TableCell>
+            <TableCell>Stt</TableCell>
+            <TableCell>Sản phẩm</TableCell>
             <TableCell align="right">Calories</TableCell>
             <TableCell align="right">Fat&nbsp;(g)</TableCell>
             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
@@ -44,7 +45,10 @@ export default function BasicTable({ clickHandler }) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.nodot}>
+              <TableCell component="th" scope="row">
+                {row.nodot}
+              </TableCell>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
@@ -61,9 +65,6 @@ export default function BasicTable({ clickHandler }) {
                 }}
               >
                 <div className={classes.root}>
-                  {/* <Button variant="contained" onClick={clickHandler}>
-                    Thêm
-                  </Button> */}
                   <FormDialog></FormDialog>
                 </div>
               </TableCell>

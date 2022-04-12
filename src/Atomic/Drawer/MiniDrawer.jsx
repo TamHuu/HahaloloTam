@@ -16,8 +16,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import BasicTable from "../Table/BasicTable";
+import Products from "../Table/BasicTable";
 import { Avatar } from "@material-ui/core";
+import { ShopOutlined } from "@material-ui/icons";
 
 const drawerWidth = 240;
 
@@ -119,7 +120,6 @@ export default function MiniDrawer() {
         >
           <Toolbar>
             <IconButton
-              color="inherit  "
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
@@ -165,20 +165,18 @@ export default function MiniDrawer() {
           </div>
           <Divider />
           <List>
-            {["Mặt hàng", "Giỏ hàng", "Đơn Hàng Mới", "Giảm Giá"].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
+            {["Mặt hàng", "Trái cây", "Rau", "Củ"].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <ShopOutlined /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
           </List>
           <Divider />
           <List>
-            {["Rau sạch", "Phụ Kiện", "Mặt khác khác"].map((text, index) => (
+            {["Làm bằng sữa", "Bánh", "Mặt hàng khác"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -190,7 +188,7 @@ export default function MiniDrawer() {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <BasicTable clickHandler={handleClickOpen}></BasicTable>
+          <Products clickHandler={handleClickOpen}></Products>
         </main>
       </div>
     </>
