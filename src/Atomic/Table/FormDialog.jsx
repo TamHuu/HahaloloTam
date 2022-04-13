@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-
 import DialogTitle from "@material-ui/core/DialogTitle";
-
 import { Fragment } from "react";
 
-export default function FormDialog() {
+export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [product, setProduct] = React.useState("");
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -20,6 +21,25 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  //
+  const productHandler = (e) => {
+    setProduct(e.target.value);
+  };
+  const descriptionHandler = (e) => {
+    setDescription(e.target.value);
+  };
+  const quantityHandler = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  //event onClick
+  const handleAdd = () => {
+    props.onAdd({ product, description, quantity });
+  };
+
+  const handleUpdate = () => {
+    console.log({ product, quantity, description });
+  };
   return (
     <Fragment>
       <Button
@@ -28,13 +48,13 @@ export default function FormDialog() {
         onClick={handleClickOpen}
         style={{ marginRight: "10px" }}
       >
-        Thêm
+        Xem
       </Button>
       <Button
         variant="outlined"
         style={{ marginRight: "10px" }}
         color="secondary"
-        onClick={handleClickOpen}
+        onClick={() => props.onDelete(props.row.id)}
       >
         Xóa
       </Button>
@@ -54,6 +74,8 @@ export default function FormDialog() {
             label="Tên sản phẩm"
             fullWidth={true}
             style={{ marginBottom: "2rem" }}
+            value={product}
+            onChange={productHandler}
           />
           <TextField
             id="Sửa"
@@ -61,6 +83,8 @@ export default function FormDialog() {
             variant="filled"
             fullWidth={true}
             style={{ marginBottom: "1rem" }}
+            value={description}
+            onChange={descriptionHandler}
           />
           <TextField
             id="Xóa"
@@ -68,6 +92,8 @@ export default function FormDialog() {
             variant="outlined"
             fullWidth={true}
             style={{ marginBottom: "1rem" }}
+            value={quantity}
+            onChange={quantityHandler}
           />
           <TextField
             id="Thoát"
@@ -78,13 +104,11 @@ export default function FormDialog() {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleAdd} color="primary">
             Thêm
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Xóa
-          </Button>
-          <Button onClick={handleClose} color="primary">
+
+          <Button onClick={handleUpdate} color="primary">
             Sửa
           </Button>
           <Button onClick={handleClose} color="primary">

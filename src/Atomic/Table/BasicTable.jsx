@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,21 +15,67 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(nodot, name, calories, fat, carbs, protein) {
-  return { nodot, name, calories, fat, carbs, protein };
-}
-
 const rows = [
-  createData("1", "Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("2", "Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("3", "Eclair", 262, 16.0, 24, 6.0),
-  createData("4", "Cupcake", 305, 3.7, 67, 4.3),
-  createData("5", "Gingerbread", 356, 16.0, 49, 3.9),
+  {
+    id: "SP1",
+    nodot: "1",
+    name: "sữa chua",
+    calories: "50",
+    fat: "20",
+    carbs: "10",
+    protein: "10",
+  },
+
+  {
+    id: "SP2",
+    nodot: "2",
+    name: "cơm gà",
+    calories: "50",
+    fat: "20",
+    carbs: "10",
+    protein: "10",
+  },
+
+  {
+    id: "SP3",
+    nodot: "3",
+    name: "sườn bì chả",
+    calories: "50",
+    fat: "20",
+    carbs: "10",
+    protein: "10",
+  },
+
+  {
+    id: "SP4",
+    nodot: "4",
+    name: "bánh hỏi heo quay",
+    calories: "50",
+    fat: "20",
+    carbs: "10",
+    protein: "10",
+  },
 ];
 
 export default function BasicTable({ clickHandler }) {
   const classes = useStyles();
-
+  const [DataTable, setDataTable] = useState(rows);
+  const onAddHandler = (item) => {
+    setDataTable([
+      ...DataTable,
+      {
+        nodot: "6",
+        name: item.product,
+        calories: item.quantity,
+        fat: item.description,
+        carbs: "70",
+        protein: "50",
+      },
+    ]);
+  };
+  const onDeleteHandler = (id) => {
+    setDataTable(DataTable.filter((item) => item.id !== id));
+  };
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -44,7 +90,7 @@ export default function BasicTable({ clickHandler }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {DataTable.map((row) => (
             <TableRow key={row.nodot}>
               <TableCell component="th" scope="row">
                 {row.nodot}
@@ -65,7 +111,11 @@ export default function BasicTable({ clickHandler }) {
                 }}
               >
                 <div className={classes.root}>
-                  <FormDialog></FormDialog>
+                  <FormDialog
+                    row={row}
+                    onAdd={onAddHandler}
+                    onDelete={onDeleteHandler}
+                  ></FormDialog>
                 </div>
               </TableCell>
             </TableRow>
