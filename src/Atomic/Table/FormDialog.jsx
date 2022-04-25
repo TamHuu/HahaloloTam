@@ -1,25 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import { blue } from "@material-ui/core/colors";
+
 import { TextField } from "@material-ui/core";
 import { DialogTitle } from "@material-ui/core";
 import { DialogContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { DialogActions } from "@material-ui/core";
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
 
-  Dialog: {},
-});
-
+  
+  
 function SimpleDialog(props) {
-  const classes = useStyles();
+
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {

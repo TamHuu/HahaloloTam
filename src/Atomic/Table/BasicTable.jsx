@@ -146,7 +146,7 @@ export default function BasicTable({ clickHandler }) {
         }}
       >
         <Button variant="outlined" color="secondary" onClick={handleCreate}>
-          Thêm
+         Create
         </Button>
       </div>
 

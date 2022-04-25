@@ -11,15 +11,13 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
+
 import Products from "../Table/BasicTable";
 import { Avatar } from "@material-ui/core";
-import { ShopOutlined } from "@material-ui/icons";
-import { ImageList } from "@material-ui/core";
-import { ImageListItem } from "@material-ui/core";
+
+import MenuItem from "./MenuItem";
+import { NavLink } from "react-router-dom";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-  
+
     ...theme.mixins.toolbar,
   },
   content: {
@@ -169,19 +167,21 @@ export default function MiniDrawer() {
           <Divider />
           <List>
             {["Danh mục", "Sản phẩm"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <ShopOutlined /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+              <NavLink
+                to={`${index % 2 === 0 ? "category" : "product"}`}
+                style={{
+                  textDecoration: "none",
+                  color: "#000",
+                }}
+              >
+                <MenuItem text={text} index={index} />
+              </NavLink>
             ))}
           </List>
           <Divider />
         </Drawer>
         <main className={classes.content}>
-        
-          <div className={classes.toolbar}/>  
+          <div className={classes.toolbar} />
 
           <Products clickHandler={handleClickOpen}></Products>
         </main>
