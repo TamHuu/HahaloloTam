@@ -14,12 +14,12 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import Products from "../Table/BasicTable";
 import { Avatar } from "@material-ui/core";
 import { ShopOutlined } from "@material-ui/icons";
-
+import { ImageList } from "@material-ui/core";
+import { ImageListItem } from "@material-ui/core";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -72,11 +72,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbar: {
+    color: "white",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
+  
     ...theme.mixins.toolbar,
   },
   content: {
@@ -113,6 +114,7 @@ export default function MiniDrawer() {
       <div className={classes.root}>
         {/* <CssBaseline /> */}
         <AppBar
+          style={{ color: "white" }}
           position="fixed"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
@@ -120,6 +122,7 @@ export default function MiniDrawer() {
         >
           <Toolbar>
             <IconButton
+              style={{ color: "white" }}
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
@@ -165,7 +168,7 @@ export default function MiniDrawer() {
           </div>
           <Divider />
           <List>
-            {["Mặt hàng", "Trái cây", "Rau", "Củ"].map((text, index) => (
+            {["Danh mục", "Sản phẩm"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <ShopOutlined /> : <MailIcon />}
@@ -175,19 +178,11 @@ export default function MiniDrawer() {
             ))}
           </List>
           <Divider />
-          <List>
-            {["Làm bằng sữa", "Bánh", "Mặt hàng khác"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
+        
+          <div className={classes.toolbar}/>  
+
           <Products clickHandler={handleClickOpen}></Products>
         </main>
       </div>

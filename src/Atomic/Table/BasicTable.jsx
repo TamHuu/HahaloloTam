@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import FormDialog from "./FormDialog";
+import { Avatar, Button } from "@material-ui/core";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -18,110 +19,196 @@ const useStyles = makeStyles({
 const rows = [
   {
     id: "SP1",
-    nodot: "1",
-    name: "sữa chua",
-    calories: "50",
-    fat: "20",
-    carbs: "10",
-    protein: "10",
+    nodot: 1,
+    nameProduct: "Coffee",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
+    amount: 50,
+    weight: 20,
+    status: "còn hàng",
   },
-
   {
     id: "SP2",
-    nodot: "2",
-    name: "cơm gà",
-    calories: "50",
-    fat: "20",
-    carbs: "10",
-    protein: "10",
+    nodot: 2,
+    nameProduct: " Matcha đá xay",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
+    amount: 50,
+    weight: 20,
+    status: "hết hàng",
   },
-
   {
     id: "SP3",
-    nodot: "3",
-    name: "sườn bì chả",
-    calories: "50",
-    fat: "20",
-    carbs: "10",
-    protein: "10",
+    nodot: 3,
+    nameProduct: "Trà machiato",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
+    amount: 50,
+    weight: 20,
+    status: "còn hàng",
   },
-
   {
     id: "SP4",
-    nodot: "4",
-    name: "bánh hỏi heo quay",
-    calories: "50",
-    fat: "20",
-    carbs: "10",
-    protein: "10",
+    nodot: 4,
+    nameProduct: "Trà bông cúc",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
+    amount: 50,
+    weight: 20,
+    status: "còn hàng",
+  },
+  {
+    id: "SP5",
+    nodot: 5,
+    nameProduct: "Trà chanh",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
+    amount: 50,
+    weight: 20,
+    status: "hết hàng",
   },
 ];
-
 export default function BasicTable({ clickHandler }) {
   const classes = useStyles();
   const [DataTable, setDataTable] = useState(rows);
-  const onAddHandler = (item) => {
-    setDataTable([
-      ...DataTable,
-      {
-        nodot: "6",
-        name: item.product,
-        calories: item.quantity,
-        fat: item.description,
-        carbs: "70",
-        protein: "50",
-      },
-    ]);
-  };
-  const onDeleteHandler = (id) => {
+  const [showDialog, setShowDialog] = useState(false);
+  const [dataDialog, setDataDialog] = useState({});
+  const [editDialog, setEditDialog] = useState(true);
+  const handleDelete = (id) => {
     setDataTable(DataTable.filter((item) => item.id !== id));
   };
+
+  const handleRead = (id) => {
+    const idRow = DataTable.findIndex((item) => item.id === id);
+    setDataDialog(DataTable[idRow]);
+    setEditDialog(true);
+    setShowDialog(true);
+  };
+
+  const handleUpdate = (id) => {
+    const idRow = DataTable.findIndex((item) => item.id === id); //
+    setDataDialog(DataTable[idRow]);
+    setShowDialog(true);
+    setEditDialog(false);
+  };
+
+  const handleCreate = () => {
+    setDataDialog({});
+    setShowDialog(true);
+    setEditDialog(false);
+  };
+
+  const updateDataHandler = (item) => {
+    console.log(item)
+
+    const tempDataTable = [...DataTable];
+    const indexEditItem = tempDataTable.findIndex((row) => row.id === item.id);
+
+
+    if(indexEditItem !== -1)
+    {tempDataTable[indexEditItem] = { ...item };
+    setDataTable([...tempDataTable]);
+    setShowDialog(false);
+  
+  }else {
+    const length = tempDataTable.length - 1
+    tempDataTable.push({
+     
+      ...item,
+      id: tempDataTable[length].id + 1,
+      nodot: tempDataTable[length].nodot + 1,
+    })
+  
+    setDataTable(tempDataTable);
+    setShowDialog(false);
+  
+  }
+
+
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Stt</TableCell>
-            <TableCell>Sản phẩm</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {DataTable.map((row) => (
-            <TableRow key={row.nodot}>
-              <TableCell component="th" scope="row">
-                {row.nodot}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell
-                style={{
-                  width: "4 00px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  color: "secondary",
-                }}
-              >
-                <div className={classes.root}>
-                  <FormDialog
-                    row={row}
-                    onAdd={onAddHandler}
-                    onDelete={onDeleteHandler}
-                  ></FormDialog>
-                </div>
-              </TableCell>
+    <>
+      {showDialog && (
+        <FormDialog
+          setShowDialog={setShowDialog}
+          row={dataDialog}
+          editDialog={editDialog}
+          setEditDialog={setEditDialog}
+          updateData={updateDataHandler}
+        ></FormDialog>
+      )}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "10px",
+        }}
+      >
+        <Button variant="outlined" color="secondary" onClick={handleCreate}>
+          Thêm
+        </Button>
+      </div>
+
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>STT</TableCell>
+              <TableCell>Sản phẩm</TableCell>
+              <TableCell align="center">IMG</TableCell>
+              <TableCell align="right">Số lượng</TableCell>
+              <TableCell align="right">Khối lượng(g)</TableCell>
+              <TableCell align="right">Tình trạng</TableCell>
+              <TableCell align="center">Hành động</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {console.log("DataTable", DataTable)}
+            {DataTable.map((row) => (
+              <TableRow key={row.nodot}>
+                <TableCell component="th" scope="row">
+                  {row.nodot}
+                </TableCell>
+
+                <TableCell align="left">{row.nameProduct}</TableCell>
+                <TableCell align="center">
+                  <Avatar alt="#" src={row.image} variant="square" />
+                </TableCell>
+                <TableCell align="right">{row.amount}</TableCell>
+                <TableCell align="right">{row.weight}</TableCell>
+                <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="center">
+                  <Button
+                    onClick={() => handleRead(row.id)}
+                    variant="outlined"
+                    color="secondary"
+                    style={{ marginRight: "10px" }}
+                  >
+                    See
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(row.id)}
+                    variant="outlined"
+                    style={{ marginRight: "10px" }}
+                    color="secondary"
+                  >
+                    Delete
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => handleUpdate(row.id)}
+                  >
+                    Update
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

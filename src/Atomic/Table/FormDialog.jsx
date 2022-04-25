@@ -1,121 +1,158 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Fragment } from "react";
+import { blue } from "@material-ui/core/colors";
+import { TextField } from "@material-ui/core";
+import { DialogTitle } from "@material-ui/core";
+import { DialogContent } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { DialogActions } from "@material-ui/core";
+const useStyles = makeStyles({
+  avatar: {
+    backgroundColor: blue[100],
+    color: blue[600],
+  },
 
-export default function FormDialog(props) {
-  const [open, setOpen] = React.useState(false);
-  const [product, setProduct] = React.useState("");
-  const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState("");
+  Dialog: {},
+});
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+function SimpleDialog(props) {
+  const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    setOpen(false);
+    onClose(selectedValue);
   };
 
-  //
-  const productHandler = (e) => {
-    setProduct(e.target.value);
-  };
-  const descriptionHandler = (e) => {
-    setDescription(e.target.value);
-  };
-  const quantityHandler = (e) => {
-    setQuantity(e.target.value);
-  };
-
-  //event onClick
-  const handleAdd = () => {
-    props.onAdd({ product, description, quantity });
-  };
-
-  const handleUpdate = () => {
-    console.log({ product, quantity, description });
-  };
   return (
-    <Fragment>
-      <Button
-        variant="outlined"
-        color="secondary"
-        onClick={handleClickOpen}
-        style={{ marginRight: "10px" }}
-      >
-        Xem
-      </Button>
-      <Button
-        variant="outlined"
-        style={{ marginRight: "10px" }}
-        color="secondary"
-        onClick={() => props.onDelete(props.row.id)}
-      >
-        Xóa
-      </Button>
+    <Dialog onClose={handleClose} open={open}>
+      <TextField id="TenSp" label="Tên Sản Phẩm" />
+      <TextField id="Img" label="IMG" variant="filled" />
+      <TextField id="amount" label="Số lượng" variant="outlined" />
+      <TextField id="weight" label="Khối lượng" variant="outlined" />
+      <TextField id="status" label="Tình trạng" variant="outlined" />
+    </Dialog>
+  );
+}
 
-      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
-        Sửa
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Sản phẩm</DialogTitle>
-        <DialogContent>
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+};
+
+export default function CustomizedDialogs(props) {
+  const [name, setName] = useState(props.row.nameProduct || "");
+  const [image, setImage] = useState(props.row.image || "");
+  const [amount, setAmount] = useState(props.row.amount || "");
+  const [weight, setWeight] = useState(props.row.weight || "");
+  const [status, setStatus] = useState(props.row.status || "");
+
+  const handleClose = () => {
+    props.setShowDialog(false);
+  };
+
+  const handleExit = () => {
+    props.setShowDialog(false);
+    props.setEditDialog(true);
+  };
+
+  const handleSave = () => {
+    props.updateData({
+      nodot: props.row.nodot,
+      id: props.row.id,
+      nameProduct: name,
+      image,
+      amount,
+      weight,
+      status,
+    });
+  };
+
+  return (
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={true}
+    >
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        Products
+      </DialogTitle>
+      <DialogContent dividers>
+        <Typography gutterBottom>
           <TextField
-            id="Thêm"
-            label="Tên sản phẩm"
+            id="TenSp"
+            style={{ marginBottom: "16px" }}
+            label="Tên Sản Phẩm"
+            variant="outlined"
             fullWidth={true}
-            style={{ marginBottom: "2rem" }}
-            value={product}
-            onChange={productHandler}
+            value={name}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
-            id="Sửa"
-            label="Miêu tả sản phẩm"
-            variant="filled"
+            id="Img"
+            style={{ marginBottom: "16px" }}
+            label="IMG"
+            variant="outlined"
             fullWidth={true}
-            style={{ marginBottom: "1rem" }}
-            value={description}
-            onChange={descriptionHandler}
+            value={image}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setImage(e.target.value)}
           />
           <TextField
-            id="Xóa"
+            id="amount"
+            style={{ marginBottom: "16px" }}
             label="Số lượng"
             variant="outlined"
             fullWidth={true}
-            style={{ marginBottom: "1rem" }}
-            value={quantity}
-            onChange={quantityHandler}
+            value={amount}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <TextField
-            id="Thoát"
-            label="Mục khác"
+            id="weight"
+            style={{ marginBottom: "16px" }}
+            label="Khối lượng"
             variant="outlined"
             fullWidth={true}
+            value={weight}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setWeight(e.target.value)}
           />
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={handleAdd} color="primary">
-            Thêm
+          <TextField
+            id="status"
+            label="Tình trạng"
+            variant="outlined"
+            fullWidth={true}
+            value={status}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setStatus(e.target.value)}
+          />
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus color="primary" onClick={handleExit}>
+          Thoát
+        </Button>
+        {!props.editDialog && (
+          <Button autoFocus color="primary" onClick={handleSave}>
+            Lưu
           </Button>
-
-          <Button onClick={handleUpdate} color="primary">
-            Sửa
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Thoát
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Fragment>
+        )}
+      </DialogActions>
+    </Dialog>
   );
 }
