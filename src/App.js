@@ -1,7 +1,7 @@
 import MiniDrawer from "./Atomic/Drawer/MiniDrawer";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import BasicTable from "./Atomic/Table/BasicTable";
+
 function App() {
   return (
     <Router>
