@@ -7,8 +7,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/category" component={MiniDrawer} />
-          <Route path="/product" component={MiniDrawer} />
+          <Route path="/" component={MiniDrawer} />
         </Switch>
       </div>
     </Router>
