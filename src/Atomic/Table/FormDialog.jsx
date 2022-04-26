@@ -72,7 +72,7 @@ export default function CustomizedDialogs(props) {
       open={true}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Products
+        Sản phẩm
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
@@ -138,11 +138,21 @@ export default function CustomizedDialogs(props) {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus color="primary" onClick={handleExit}>
+        <Button
+          autoFocus
+          color="secondary"
+          onClick={handleExit}
+          variant="contained"
+        >
           Thoát
         </Button>
         {!props.editDialog && (
-          <Button autoFocus color="primary" onClick={handleSave}>
+          <Button
+            autoFocus
+            color="secondary"
+            onClick={handleSave}
+            variant="contained"
+          >
             Lưu
           </Button>
         )}

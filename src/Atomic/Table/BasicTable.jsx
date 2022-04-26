@@ -145,8 +145,8 @@ export default function BasicTable({ clickHandler }) {
           marginBottom: "10px",
         }}
       >
-        <Button variant="outlined" color="secondary" onClick={handleCreate}>
-         Create
+        <Button variant="contained" color="secondary" onClick={handleCreate}>
+          Thêm
         </Button>
       </div>
 
@@ -156,7 +156,7 @@ export default function BasicTable({ clickHandler }) {
             <TableRow>
               <TableCell>STT</TableCell>
               <TableCell>Sản phẩm</TableCell>
-              <TableCell align="center">IMG</TableCell>
+              <TableCell align="center">Hình ảnh</TableCell>
               <TableCell align="right">Số lượng</TableCell>
               <TableCell align="right">Khối lượng(g)</TableCell>
               <TableCell align="right">Tình trạng</TableCell>
@@ -181,27 +181,27 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="center">
                   <Button
                     onClick={() => handleRead(row.id)}
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
                     style={{ marginRight: "10px" }}
                   >
-                    See
+                    Xem
                   </Button>
                   <Button
                     onClick={() => handleDelete(row.id)}
-                    variant="outlined"
+                    variant="contained"
                     style={{ marginRight: "10px" }}
                     color="secondary"
                   >
-                    Delete
+                    Xóa
                   </Button>
 
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
                     onClick={() => handleUpdate(row.id)}
                   >
-                    Update
+                    Sửa
                   </Button>
                 </TableCell>
               </TableRow>

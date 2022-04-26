@@ -18,6 +18,7 @@ import { Avatar } from "@material-ui/core";
 import MenuItem from "./MenuItem";
 import { NavLink } from "react-router-dom";
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -81,6 +82,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1648492694364-26cf4b39806b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "100vh",
   },
 }));
 
