@@ -12,12 +12,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-import Products from "../Table/BasicTable";
 import { Avatar } from "@material-ui/core";
 
 import MenuItem from "./MenuItem";
 import { NavLink } from "react-router-dom";
-
 
 const drawerWidth = 240;
 
@@ -104,9 +102,9 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const handleClickOpen = () => {
-    setShowDialog(true);
-  };
+  // const handleClickOpen = () => {
+  //   setShowDialog(true);
+  // };
 
   const handleClose = () => {
     setShowDialog(false);
@@ -186,11 +184,11 @@ export default function MiniDrawer() {
           </List>
           <Divider />
         </Drawer>
-        <main className={classes.content}>
+        {/* <main className={classes.content}>
           <div className={classes.toolbar} />
 
           <Products clickHandler={handleClickOpen}></Products>
-        </main>
+        </main> */}
       </div>
     </>
   );

@@ -12,7 +12,9 @@ import FormDialog from "./FormDialog";
 import { Avatar, Button } from "@material-ui/core";
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    textAlign: "center",
+    minWidth: 300,
+    marginLeft: 100,
   },
 });
 
@@ -99,32 +101,26 @@ export default function BasicTable({ clickHandler }) {
   };
 
   const updateDataHandler = (item) => {
-    console.log(item)
+    console.log(item);
 
     const tempDataTable = [...DataTable];
     const indexEditItem = tempDataTable.findIndex((row) => row.id === item.id);
 
+    if (indexEditItem !== -1) {
+      tempDataTable[indexEditItem] = { ...item };
+      setDataTable([...tempDataTable]);
+      setShowDialog(false);
+    } else {
+      const length = tempDataTable.length - 1;
+      tempDataTable.push({
+        ...item,
+        id: tempDataTable[length].id + 1,
+        nodot: tempDataTable[length].nodot + 1,
+      });
 
-    if(indexEditItem !== -1)
-    {tempDataTable[indexEditItem] = { ...item };
-    setDataTable([...tempDataTable]);
-    setShowDialog(false);
-  
-  }else {
-    const length = tempDataTable.length - 1
-    tempDataTable.push({
-     
-      ...item,
-      id: tempDataTable[length].id + 1,
-      nodot: tempDataTable[length].nodot + 1,
-    })
-  
-    setDataTable(tempDataTable);
-    setShowDialog(false);
-  
-  }
-
-
+      setDataTable(tempDataTable);
+      setShowDialog(false);
+    }
   };
 
   return (
@@ -142,7 +138,8 @@ export default function BasicTable({ clickHandler }) {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          marginBottom: "10px",
+          padding: "20px",
+          marginTop: "159px",
         }}
       >
         <Button variant="contained" color="secondary" onClick={handleCreate}>
@@ -156,9 +153,9 @@ export default function BasicTable({ clickHandler }) {
             <TableRow>
               <TableCell>STT</TableCell>
               <TableCell>Sản phẩm</TableCell>
-              <TableCell align="center">Hình ảnh</TableCell>
-              <TableCell align="right">Số lượng</TableCell>
-              <TableCell align="right">Khối lượng(g)</TableCell>
+              <TableCell align="left">Hình ảnh</TableCell>
+              <TableCell align="center">Số lượng&nbsp;(g)</TableCell>
+              <TableCell align="center">Khối lượng&nbsp;(kg)</TableCell>
               <TableCell align="right">Tình trạng</TableCell>
               <TableCell align="center">Hành động</TableCell>
             </TableRow>
@@ -172,11 +169,11 @@ export default function BasicTable({ clickHandler }) {
                 </TableCell>
 
                 <TableCell align="left">{row.nameProduct}</TableCell>
-                <TableCell align="center">
+                <TableCell align="left">
                   <Avatar alt="#" src={row.image} variant="square" />
                 </TableCell>
-                <TableCell align="right">{row.amount}</TableCell>
-                <TableCell align="right">{row.weight}</TableCell>
+                <TableCell align="center">{row.amount}</TableCell>
+                <TableCell align="center">{row.weight}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
                 <TableCell align="center">
                   <Button

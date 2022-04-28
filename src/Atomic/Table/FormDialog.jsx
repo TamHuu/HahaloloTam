@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
+import ComboBox from "./ComboBox";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 
@@ -10,10 +10,7 @@ import { DialogContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { DialogActions } from "@material-ui/core";
 
-  
-  
 function SimpleDialog(props) {
-
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -23,10 +20,10 @@ function SimpleDialog(props) {
   return (
     <Dialog onClose={handleClose} open={open}>
       <TextField id="TenSp" label="Tên Sản Phẩm" />
-      <TextField id="Img" label="IMG" variant="filled" />
+      <TextField id="Images" label="IMG" variant="filled" />
       <TextField id="amount" label="Số lượng" variant="outlined" />
       <TextField id="weight" label="Khối lượng" variant="outlined" />
-      <TextField id="status" label="Tình trạng" variant="outlined" />
+      <ComboBox />
     </Dialog>
   );
 }
@@ -91,7 +88,7 @@ export default function CustomizedDialogs(props) {
           <TextField
             id="Img"
             style={{ marginBottom: "16px" }}
-            label="IMG"
+            label="Images"
             variant="outlined"
             fullWidth={true}
             value={image}
