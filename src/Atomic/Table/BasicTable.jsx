@@ -11,11 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import FormDialog from "./FormDialog";
 import { Avatar, Button } from "@material-ui/core";
 const useStyles = makeStyles({
-  table: {
-    textAlign: "center",
-    minWidth: 300,
-    marginLeft: 100,
-  },
+  table: {},
 });
 
 const rows = [
@@ -24,9 +20,9 @@ const rows = [
     nodot: 1,
     nameProduct: "Coffee",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
-    amount: 50,
-    weight: 20,
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "rất ư là ngon",
+    money: "20.000Đ",
     status: "còn hàng",
   },
   {
@@ -34,9 +30,9 @@ const rows = [
     nodot: 2,
     nameProduct: " Matcha đá xay",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
-    amount: 50,
-    weight: 20,
+      "https://media.istockphoto.com/photos/matcha-latte-green-milk-foam-cup-on-wood-table-at-cafe-trendy-powered-picture-id1325991061?b=1&k=20&m=1325991061&s=170667a&w=0&h=Aa3JVRJG_PMP8YCogu65x7qqC5y0q93VvNxEYw_jxZk=",
+    desc: "rất ư là ngon",
+    money: "20.000Đ",
     status: "hết hàng",
   },
   {
@@ -44,19 +40,19 @@ const rows = [
     nodot: 3,
     nameProduct: "Trà machiato",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
-    amount: 50,
-    weight: 20,
+      "https://media.istockphoto.com/photos/coffee-latte-caramel-machiato-picture-id1340692101?b=1&k=20&m=1340692101&s=170667a&w=0&h=rJD9nSyYbnwe3MtKCxBFUPXAQ2aqTMIuG5tYoQKaWdg=",
+    desc: "rất ư là ngon",
+    money: "20.000Đ",
     status: "còn hàng",
   },
   {
     id: "SP4",
     nodot: 4,
-    nameProduct: "Trà bông cúc",
+    nameProduct: "Orange juice cocktail",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
-    amount: 50,
-    weight: 20,
+      "https://images.unsplash.com/photo-1598994580656-33ae4481138d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b3JhbmdlJTIwanVpY2UlMjBjb2NrdGFpbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "rất ư là ngon",
+    money: "20.000Đ",
     status: "còn hàng",
   },
   {
@@ -64,9 +60,9 @@ const rows = [
     nodot: 5,
     nameProduct: "Trà chanh",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5_aLd98kfyzKzsB7RzT2kl0WUmPr68GjJlvECbtjnw&s",
-    amount: 50,
-    weight: 20,
+      "https://images.unsplash.com/photo-1621263764928-df1444c5e859?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVtb24lMjBqdWljZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "rất ư là ngon",
+    money: "20.000Đ",
     status: "hết hàng",
   },
 ];
@@ -148,14 +144,19 @@ export default function BasicTable({ clickHandler }) {
       </div>
 
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table
+          size="small"
+          padding="checkbox"
+          className={classes.table}
+          aria-label="simple table"
+        >
           <TableHead>
             <TableRow>
               <TableCell>STT</TableCell>
               <TableCell>Sản phẩm</TableCell>
               <TableCell align="left">Hình ảnh</TableCell>
-              <TableCell align="center">Số lượng&nbsp;(g)</TableCell>
-              <TableCell align="center">Khối lượng&nbsp;(kg)</TableCell>
+              <TableCell align="center">Miêu tả&nbsp;</TableCell>
+              <TableCell align="center">Thành tiền&nbsp;(Đồng)</TableCell>
               <TableCell align="right">Tình trạng</TableCell>
               <TableCell align="center">Hành động</TableCell>
             </TableRow>
@@ -172,8 +173,8 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">
                   <Avatar alt="#" src={row.image} variant="square" />
                 </TableCell>
-                <TableCell align="center">{row.amount}</TableCell>
-                <TableCell align="center">{row.weight}</TableCell>
+                <TableCell align="center">{row.desc}</TableCell>
+                <TableCell align="center">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
                 <TableCell align="center">
                   <Button

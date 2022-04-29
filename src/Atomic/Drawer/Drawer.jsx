@@ -19,6 +19,7 @@ import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -29,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "red",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -69,38 +69,27 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbar: {
-    color: "white",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-
+    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    backgroundImage:
-      "url(https://images.unsplash.com/photo-1648492694364-26cf4b39806b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    height: "100vh",
   },
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({
+  open,
+  handleDrawerOpen,
+  handleDrawerClose,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const [showDialog, setShowDialog] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   // const handleClickOpen = () => {
   //   setShowDialog(true);
@@ -116,6 +105,7 @@ export default function MiniDrawer() {
       <div className={classes.root}>
         {/* <CssBaseline /> */}
         <AppBar
+          color="secondary"
           style={{ color: "white" }}
           position="fixed"
           className={clsx(classes.appBar, {
