@@ -14,3 +14,11 @@ code {
   serif
     monospace;
 }
+
+tbody tr:hover {
+  background: rgb(234, 234, 234);
+}
+
+tbody tr {
+  transition: 0.5s ease;
+}

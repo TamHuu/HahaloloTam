@@ -20,9 +20,10 @@ function SimpleDialog(props) {
   return (
     <Dialog onClose={handleClose} open={open}>
       <TextField id="TenSp" label="Tên Sản Phẩm" />
-      <TextField id="Images" label="IMG" variant="filled" />
-      <TextField id="amount" label="Số lượng" variant="outlined" />
-      <TextField id="weight" label="Khối lượng" variant="outlined" />
+      <TextField id="Images" label="Hình ảnh" variant="filled" />
+      <TextField id="Desc" label="Miêu tả" variant="outlined" />
+      <TextField id="money" label="Thành tiền" variant="outlined" />
+      <TextField id="status" label="Tình trạng" variant="outlined" />
       <ComboBox />
     </Dialog>
   );
@@ -35,10 +36,10 @@ SimpleDialog.propTypes = {
 };
 
 export default function CustomizedDialogs(props) {
-  const [name, setName] = useState(props.row.nameProduct || "");
+  const [name, setName] = useState(props.row.name || "");
   const [image, setImage] = useState(props.row.image || "");
-  const [amount, setAmount] = useState(props.row.amount || "");
-  const [weight, setWeight] = useState(props.row.weight || "");
+  const [desc, setDesc] = useState(props.row.desc || "");
+  const [money, setMoney] = useState(props.row.money || "");
   const [status, setStatus] = useState(props.row.status || "");
 
   const handleClose = () => {
@@ -56,8 +57,8 @@ export default function CustomizedDialogs(props) {
       id: props.row.id,
       nameProduct: name,
       image,
-      amount,
-      weight,
+      desc,
+      money,
       status,
     });
   };
@@ -86,9 +87,9 @@ export default function CustomizedDialogs(props) {
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
-            id="Img"
+            id="img"
             style={{ marginBottom: "16px" }}
-            label="Images"
+            label="Hình ảnh"
             variant="outlined"
             fullWidth={true}
             value={image}
@@ -98,28 +99,28 @@ export default function CustomizedDialogs(props) {
             onChange={(e) => setImage(e.target.value)}
           />
           <TextField
-            id="amount"
+            id="desc"
             style={{ marginBottom: "16px" }}
-            label="Số lượng"
+            label="Miêu tả"
             variant="outlined"
             fullWidth={true}
-            value={amount}
+            value={desc}
             InputProps={{
               readOnly: props.editDialog,
             }}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setDesc(e.target.value)}
           />
           <TextField
-            id="weight"
+            id="money"
             style={{ marginBottom: "16px" }}
-            label="Khối lượng"
+            label="Thành tiền"
             variant="outlined"
             fullWidth={true}
-            value={weight}
+            value={money}
             InputProps={{
               readOnly: props.editDialog,
             }}
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={(e) => setMoney(e.target.value)}
           />
           <TextField
             id="status"
