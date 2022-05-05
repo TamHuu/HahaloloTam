@@ -310,10 +310,7 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell
-                  align="center"
-                  style={{ padding: "20px", minWidth: "92px", width: "19%" }}
-                >
+                <TableCell align="center" style={{ width: "19%" }}>
                   <Button
                     onClick={() => handleRead(row.id)}
                     variant="contained"
