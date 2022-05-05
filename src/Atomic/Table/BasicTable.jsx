@@ -28,7 +28,7 @@ const rows = [
     name: "Coffee",
     image:
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "rất ư là ngon",
+    desc: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
     money: "20.000Đ",
     status: "còn hàng",
   },
@@ -38,7 +38,7 @@ const rows = [
     name: " Matcha đá xay",
     image:
       "https://media.istockphoto.com/photos/matcha-latte-green-milk-foam-cup-on-wood-table-at-cafe-trendy-powered-picture-id1325991061?b=1&k=20&m=1325991061&s=170667a&w=0&h=Aa3JVRJG_PMP8YCogu65x7qqC5y0q93VvNxEYw_jxZk=",
-    desc: "rất ư là ngon",
+    desc: "Màu xanh mát mắt của bột trà Matcha, vị ngọt nhẹ nhàng, pha trộn cùng sữa tươi, Matcha Latte sẽ khiến bạn yêu ngay từ lần đầu tiên.",
     money: "30.000Đ",
     status: "hết hàng",
   },
@@ -48,7 +48,7 @@ const rows = [
     name: "Trà machiato",
     image:
       "https://media.istockphoto.com/photos/coffee-latte-caramel-machiato-picture-id1340692101?b=1&k=20&m=1340692101&s=170667a&w=0&h=rJD9nSyYbnwe3MtKCxBFUPXAQ2aqTMIuG5tYoQKaWdg=",
-    desc: "rất ư là ngon",
+    desc: "Macchiato lôi cuốn các tín đồ yêu ẩm thực bằng vị béo béo, thơm thơm, mằn mặn đầy mê hoặc. Sự kết hợp hoàn hảo giữa trà đen, trà sữa hay cà phê cùng lớp kem sữa béo ngậy đã khiến cho các tín đồ phải mê mệt, đắm mình trong vị ngon ngây ngất, hương thơm thoang thoảng, vị béo ngậy nhưng không ngán cuốn hút của trà macchiato.",
     money: "40.000Đ",
     status: "còn hàng",
   },
@@ -58,7 +58,7 @@ const rows = [
     name: "Orange juice cocktail",
     image:
       "https://images.unsplash.com/photo-1598994580656-33ae4481138d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b3JhbmdlJTIwanVpY2UlMjBjb2NrdGFpbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "rất ư là ngon",
+    desc: "Thức uống đỉnh cao mang một diện mạo tươi mới, tiện lợi, phù hợp với bình thường mới và vẫn giữ nguyên vị thanh ngọt của đào, vị chua dịu của cam vàng nguyên vỏ và vị trà đen thơm lừng ly Trà đào cam sả nguyên bản. *Sản phẩm dùng ngon nhất trong ngày. *Sản phẩm mặc định mức đường và không đá.",
     money: "45.000Đ",
     status: "còn hàng",
   },
@@ -110,6 +110,26 @@ const rows = [
       "https://images.unsplash.com/photo-1571950006418-f226dc106482?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     desc: "rất ư là ngon",
     money: "70.000Đ",
+    status: "hết hàng",
+  },
+  {
+    id: "SP10",
+    nodot: 10,
+    name: "Soda chanh",
+    image:
+      "https://images.unsplash.com/photo-1567671899076-51a64ddb7c5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "rất ư là ngon",
+    money: "75.000Đ",
+    status: "hết hàng",
+  },
+  {
+    id: "SP10",
+    nodot: 10,
+    name: "Soda chanh",
+    image:
+      "https://images.unsplash.com/photo-1567671899076-51a64ddb7c5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "rất ư là ngon",
+    money: "75.000Đ",
     status: "hết hàng",
   },
   {
@@ -227,36 +247,46 @@ export default function BasicTable({ clickHandler }) {
         }}
       >
         <Table
+          stickyHeader
+          aria-label="sticky table"
           size="small"
           padding="checkbox"
           className={classes.table}
-          aria-label="simple table"
         >
           <TableHead>
             <TableRow>
               <TableCell
                 align="center"
-                style={{ height: "50px", fontWeight: "bold" }}
+                style={{ height: "50px", fontWeight: "bold", maxWidth: "10px" }}
               >
                 STT
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold", width: "9%" }}
+              >
                 Sản phẩm
               </TableCell>
               <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Hình ảnh
               </TableCell>
-              <TableCell align="left " style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left "
+                style={{ fontWeight: "bold", width: "22%" }}
+              >
                 Miêu tả
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "11%" }}
+              >
                 Thành tiền&nbsp;(Đồng)
               </TableCell>
               <TableCell align="right" style={{ fontWeight: "bold" }}>
                 Tình trạng
               </TableCell>
               <TableCell align="center" style={{ fontWeight: "bold" }}>
-                Hành động
+                Thao tác
               </TableCell>
             </TableRow>
           </TableHead>
@@ -280,7 +310,10 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center" style={{ padding: "20px" }}>
+                <TableCell
+                  align="center"
+                  style={{ padding: "20px", minWidth: "92px", width: "19%" }}
+                >
                   <Button
                     onClick={() => handleRead(row.id)}
                     variant="contained"

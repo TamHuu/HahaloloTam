@@ -8,7 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Avatar } from "@material-ui/core";
-import { Button } from "antd";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   table: {
@@ -143,63 +143,107 @@ export default function TableCategory() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} style={{ marginTop: "240px" }}>
-      <Table
-        className={classes.table}
-        size="small"
-        aria-label="simple table"
-        padding="checkbox"
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          padding: "20px",
+          marginTop: "159px",
+        }}
       >
-        <TableHead>
-          <TableRow>
-            <TableCell>STT</TableCell>
-            <TableCell align="left">Tên sản phẩm</TableCell>
-            <TableCell align="left"> Hình ảnh</TableCell>
-            <TableCell align="left"> Miêu tả</TableCell>
-            <TableCell align="right">Size</TableCell>
-            <TableCell align="right">Thành tiền</TableCell>
-            <TableCell align="right">Tình trạng</TableCell>
-            <TableCell align="center">Hành động</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {DataCategory.map((row) => (
-            <TableRow key={row.nodot}>
-              <TableCell component="th" scope="row">
-                {row.nodot}
-              </TableCell>
-              <TableCell align="left">{row.name}</TableCell>
-              <TableCell align="left">
-                <Avatar alt="#" src={row.image} variant="square" />
-              </TableCell>
-              <TableCell align="left">{row.desc}</TableCell>
-              <TableCell align="right">{row.size}</TableCell>
-              <TableCell align="right">{row.money}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="center">
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  style={{ marginRight: "10px" }}
-                >
-                  Xem
-                </Button>
-                <Button
-                  variant="contained"
-                  style={{ marginRight: "10px" }}
-                  color="secondary"
-                >
-                  Xóa
-                </Button>
+        <Button variant="contained" color="secondary">
+          Thêm
+        </Button>
+      </div>
 
-                <Button variant="contained" color="secondary">
-                  Sửa
-                </Button>
+      <TableContainer
+        component={Paper}
+        style={{
+          height: "400px",
+          overflow: "auto",
+        }}
+      >
+        <Table
+          stickyHeader
+          aria-label="sticky table"
+          size="small"
+          padding="checkbox"
+          className={classes.table}
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell
+                align="center"
+                style={{ height: "50px", fontWeight: "bold", maxWidth: "10px" }}
+              >
+                STT
+              </TableCell>
+              <TableCell align="left" style={{ fontWeight: "bold" }}>
+                Sản phẩm
+              </TableCell>
+              <TableCell align="left" style={{ fontWeight: "bold" }}>
+                Hình ảnh
+              </TableCell>
+              <TableCell align="left " style={{ fontWeight: "bold" }}>
+                Miêu tả
+              </TableCell>
+              <TableCell align="right" style={{ fontWeight: "bold" }}>
+                Thành tiền&nbsp;(Đồng)
+              </TableCell>
+              <TableCell align="right" style={{ fontWeight: "bold" }}>
+                Tình trạng
+              </TableCell>
+              <TableCell align="center" style={{ fontWeight: "bold" }}>
+                Thao tác
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {console.log("DataTable", DataCategory)}
+            {DataCategory.map((row) => (
+              <TableRow key={row.nodot}>
+                <TableCell align="center" component="th" scope="row">
+                  {row.nodot}
+                </TableCell>
+
+                <TableCell align="left">{row.name}</TableCell>
+                <TableCell align="left">
+                  <Avatar
+                    style={{ height: "100px", width: "100px", padding: "5px" }}
+                    alt="#"
+                    src={row.image}
+                    variant="square"
+                  />
+                </TableCell>
+                <TableCell align="left">{row.desc}</TableCell>
+                <TableCell align="right">{row.money}</TableCell>
+                <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="center" style={{ padding: "20px" }}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    style={{ marginRight: "10px" }}
+                  >
+                    Xem
+                  </Button>
+                  <Button
+                    variant="contained"
+                    style={{ marginRight: "10px" }}
+                    color="secondary"
+                  >
+                    Xóa
+                  </Button>
+
+                  <Button variant="contained" color="secondary">
+                    Sửa
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

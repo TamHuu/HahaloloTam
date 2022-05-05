@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ComboBox from "./ComboBox";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-
 import { TextField } from "@material-ui/core";
 import { DialogTitle } from "@material-ui/core";
 import { DialogContent } from "@material-ui/core";
@@ -104,6 +103,8 @@ export default function CustomizedDialogs(props) {
             label="Miêu tả"
             variant="outlined"
             fullWidth={true}
+            rows={4}
+            multiline
             value={desc}
             InputProps={{
               readOnly: props.editDialog,
@@ -122,17 +123,8 @@ export default function CustomizedDialogs(props) {
             }}
             onChange={(e) => setMoney(e.target.value)}
           />
-          <TextField
-            id="status"
-            label="Tình trạng"
-            variant="outlined"
-            fullWidth={true}
-            value={status}
-            InputProps={{
-              readOnly: props.editDialog,
-            }}
-            onChange={(e) => setStatus(e.target.value)}
-          />
+
+          <ComboBox />
         </Typography>
       </DialogContent>
       <DialogActions>
