@@ -160,7 +160,7 @@ export default function MiniDrawer({
           </div>
           <Divider />
           <List>
-            {["Danh mục", "Sản phẩm"].map((text, index) => (
+            {["Đồ ăn", "Bán mang về"].map((text, index) => (
               <NavLink
                 to={`${index % 2 === 0 ? "category" : "product"}`}
                 style={{

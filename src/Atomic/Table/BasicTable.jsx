@@ -15,7 +15,9 @@ import Switch from "@material-ui/core/Switch";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
-
+    width: "100%",
+    height: "400px",
+    overflow: "auto",
   },
 });
 
@@ -217,7 +219,13 @@ export default function BasicTable({ clickHandler }) {
         }
         label="Đổi màu giao diện"
       />
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        style={{
+          height: "400px",
+          overflow: "auto",
+        }}
+      >
         <Table
           size="small"
           padding="checkbox"
@@ -227,7 +235,7 @@ export default function BasicTable({ clickHandler }) {
           <TableHead>
             <TableRow>
               <TableCell
-                align="left"
+                align="center"
                 style={{ height: "50px", fontWeight: "bold" }}
               >
                 STT
@@ -256,18 +264,23 @@ export default function BasicTable({ clickHandler }) {
             {console.log("DataTable", DataTable)}
             {DataTable.map((row) => (
               <TableRow key={row.nodot}>
-                <TableCell align="left" component="th" scope="row">
+                <TableCell align="center" component="th" scope="row">
                   {row.nodot}
                 </TableCell>
 
                 <TableCell align="left">{row.name}</TableCell>
                 <TableCell align="left">
-                  <Avatar alt="#" src={row.image} variant="square" />
+                  <Avatar
+                    style={{ height: "100px", width: "100px", padding: "5px" }}
+                    alt="#"
+                    src={row.image}
+                    variant="square"
+                  />
                 </TableCell>
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center">
+                <TableCell align="center" style={{ padding: "20px" }}>
                   <Button
                     onClick={() => handleRead(row.id)}
                     variant="contained"

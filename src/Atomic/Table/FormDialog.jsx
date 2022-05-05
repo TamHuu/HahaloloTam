@@ -55,7 +55,7 @@ export default function CustomizedDialogs(props) {
     props.updateData({
       nodot: props.row.nodot,
       id: props.row.id,
-      nameProduct: name,
+      name: name,
       image,
       desc,
       money,
