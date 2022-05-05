@@ -10,6 +10,7 @@ import BasicTable from "./Atomic/Table/BasicTable";
 import TableCategory from "./Atomic/Page/PageCategory/TableCategory";
 import TableProduct from "./Atomic/Page/PageProduct/TableProduct";
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({

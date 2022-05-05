@@ -123,7 +123,17 @@ export default function CustomizedDialogs(props) {
             }}
             onChange={(e) => setMoney(e.target.value)}
           />
-
+          <TextField
+            id="status"
+            label="Tình trạng"
+            variant="outlined"
+            fullWidth={true}
+            value={status}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setStatus(e.target.value)}
+          />
           <ComboBox />
         </Typography>
       </DialogContent>
