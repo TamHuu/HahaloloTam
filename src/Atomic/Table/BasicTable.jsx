@@ -15,6 +15,7 @@ import Switch from "@material-ui/core/Switch";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+
   },
 });
 
@@ -150,8 +151,8 @@ export default function BasicTable({ clickHandler }) {
     setShowDialog(true);
     setEditDialog(false);
   };
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
+  const handleChangeDense = () => {
+    setDense(!dense);
   };
   const updateDataHandler = (item) => {
     console.log(item);
@@ -225,20 +226,37 @@ export default function BasicTable({ clickHandler }) {
         >
           <TableHead>
             <TableRow>
-              <TableCell align="left">STT</TableCell>
-              <TableCell align="left">Sản phẩm</TableCell>
-              <TableCell align="center">Hình ảnh</TableCell>
-              <TableCell align="left">Miêu tả</TableCell>
-              <TableCell align="right">Thành tiền&nbsp;(Đồng)</TableCell>
-              <TableCell align="right">Tình trạng</TableCell>
-              <TableCell align="center">Hành động</TableCell>
+              <TableCell
+                align="left"
+                style={{ height: "50px", fontWeight: "bold" }}
+              >
+                STT
+              </TableCell>
+              <TableCell align="left" style={{ fontWeight: "bold" }}>
+                Sản phẩm
+              </TableCell>
+              <TableCell align="left" style={{ fontWeight: "bold" }}>
+                Hình ảnh
+              </TableCell>
+              <TableCell align="left " style={{ fontWeight: "bold" }}>
+                Miêu tả
+              </TableCell>
+              <TableCell align="right" style={{ fontWeight: "bold" }}>
+                Thành tiền&nbsp;(Đồng)
+              </TableCell>
+              <TableCell align="right" style={{ fontWeight: "bold" }}>
+                Tình trạng
+              </TableCell>
+              <TableCell align="center" style={{ fontWeight: "bold" }}>
+                Hành động
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {console.log("DataTable", DataTable)}
             {DataTable.map((row) => (
               <TableRow key={row.nodot}>
-                <TableCell component="th" scope="row">
+                <TableCell align="left" component="th" scope="row">
                   {row.nodot}
                 </TableCell>
 
