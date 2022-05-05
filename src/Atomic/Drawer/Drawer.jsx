@@ -16,9 +16,9 @@ import { Avatar } from "@material-ui/core";
 
 import MenuItem from "./MenuItem";
 import { NavLink } from "react-router-dom";
+import ComboBox from "../Table/ComboBox";
 
 const drawerWidth = 240;
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

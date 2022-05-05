@@ -11,6 +11,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormDialog from "./FormDialog";
 import { Avatar, Button } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
+import ComboBox from "./ComboBox";
 
 const useStyles = makeStyles({
   table: {
@@ -278,7 +279,7 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="right"
-                style={{ fontWeight: "bold", width: "11%" }}
+                style={{ fontWeight: "bold", width: "11%", padding: "1px" }}
               >
                 Thành tiền&nbsp;(Đồng)
               </TableCell>
@@ -310,7 +311,10 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center" style={{ width: "19%" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "19%", padding: "1px" }}
+                >
                   <Button
                     onClick={() => handleRead(row.id)}
                     variant="contained"
