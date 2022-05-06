@@ -19,32 +19,30 @@ const DataCategory = [
   {
     id: "SP1",
     nodot: 1,
-    name: " Bánh kem cà phê",
-    image:
-      "https://media.istockphoto.com/photos/chocolate-bundt-cake-with-chocolate-ganache-picture-id1336693912?b=1&k=20&m=1336693912&s=170667a&w=0&h=pnLO3zXiaDkbB65UmIPrd8gdcjxdf7xuglNjqwVycY0=",
-    desc: "ngon tuyệt cú mèo",
+    name: " Mousse Gấu Chocolate",
+    image: "https://minio.thecoffeehouse.com/image/admin/1638170066_gau.jpg",
+    desc: "Với vẻ ngoài đáng yêu và hương vị ngọt ngào, thơm béo nhất định bạn phải thử ít nhất 1 lần.",
     size: "lớn",
-    money: "20000Đ",
+    money: "39.000Đ",
     status: "còn hàng",
   },
   {
     id: "SP2",
     nodot: 2,
-    name: "Bánh socola 3 tầng",
-    image:
-      "https://images.unsplash.com/photo-1606188074044-fcd750f6996a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2FrZSUyMHNob3B8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+    name: "Bánh Mì Que Pate",
+    image: "https://minio.thecoffeehouse.com/image/admin/banhmique_056830.jpg",
+    desc: "Vỏ bánh mì giòn tan, kết hợp với lớp nhân pate béo béo đậm đà sẽ là lựa chọn lý tưởng nhẹ nhàng để lấp đầy chiếc bụng đói , cho 1 bữa sáng - trưa - chiều - tối của bạn thêm phần thú vị.",
     size: "vừa",
-    money: "20000Đ",
+    money: "19.000Đ",
     status: "còn hàng",
   },
   {
     id: "SP3",
     nodot: 3,
-    name: "Socola hoa hồng",
+    name: "Bánh Mì VN Thịt Nguội",
     image:
-      "https://images.unsplash.com/photo-1600002415506-dd06090d3480?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNha2UlMjBzaG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/1638440015_banh-mi-vietnam.jpg",
+    desc: "Gói gọn trong ổ bánh mì Việt Nam là từng lớp chả, từng lớp jambon hòa quyện cùng bơ và pate thơm lừng, thêm dưa rau cho bữa sáng đầy năng lượng.ngon tuyệt cú mèo",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -64,10 +62,10 @@ const DataCategory = [
   {
     id: "SP5",
     nodot: 5,
-    name: "Bánh mật",
+    name: "Croissant trứng muối",
     image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/croissant-trung-muoi_880850.jpg",
+    desc: "Croissant trứng muối thơm lừng, bên ngoài vỏ bánh giòn hấp dẫn bên trong trứng muối vị ngon khó cưỡng.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -75,10 +73,10 @@ const DataCategory = [
   {
     id: "SP6",
     nodot: 6,
-    name: "Pizza",
+    name: "Chà Bông Phô Mai",
     image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/cha-bong-pho-mai_204282.jpg",
+    desc: "Chiếc bánh với lớp phô mai vàng sánh mịn bên trong, được bọc ngoài lớp vỏ xốp mềm thơm lừng. Thêm lớp chà bông mằn mặn hấp dẫn bên trên.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -86,10 +84,10 @@ const DataCategory = [
   {
     id: "SP7",
     nodot: 7,
-    name: "Su kem",
+    name: "Mochi Kem Phúc Bồn Tử",
     image:
-      "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/1643102019_mochi-phucbontu.jpg",
+    desc: "Bao bọc bởi lớp vỏ Mochi dẻo thơm, bên trong là lớp kem lạnh cùng nhân phúc bồn tử ngọt ngào. Gọi 1 chiếc Mochi cho ngày thật tươi mát.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -97,10 +95,10 @@ const DataCategory = [
   {
     id: "SP8",
     nodot: 8,
-    name: "Cơm hải sản",
+    name: "Mochi Kem Việt Quất",
     image:
-      "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGRpbm5lcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/1643102034_mochi-vietquat.jpg",
+    desc: "Bao bọc bởi lớp vỏ Mochi dẻo thơm, bên trong là lớp kem lạnh cùng nhân việt quất đặc trưng thơm thơm, ngọt dịu.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -108,10 +106,10 @@ const DataCategory = [
   {
     id: "SP9",
     nodot: 9,
-    name: "Bò nướng lá lốp",
+    name: "Mochi Kem Dừa Dứa",
     image:
-      "https://media.istockphoto.com/photos/homemade-corned-beef-and-cabbage-picture-id466722944?b=1&k=20&m=466722944&s=170667a&w=0&h=8AD3ApbLO1zxn58Tf23qkldgeTiRz0ZwbYqpddlkChU=",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/1643101996_mochi-dua.jpg",
+    desc: "Bao bọc bởi lớp vỏ Mochi dẻo thơm, bên trong là lớp kem lạnh cùng nhân dừa dứa thơm lừng lạ miệng.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -119,10 +117,10 @@ const DataCategory = [
   {
     id: "SP10",
     nodot: 10,
-    name: "Salad cá hồi",
+    name: "Mochi Kem Chocolate",
     image:
-      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZGlubmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+      "https://minio.thecoffeehouse.com/image/admin/mochi-choco_560386.jpg",
+    desc: "Bao bọc bởi lớp vỏ Mochi dẻo thơm, bên trong là lớp kem lạnh cùng nhân chocolate độc đáo.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -130,10 +128,9 @@ const DataCategory = [
   {
     id: "SP11",
     nodot: 11,
-    name: "Bò hầm",
-    image:
-      "https://images.unsplash.com/photo-1603073163308-9654c3fb70b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZGlubmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "ngon tuyệt cú mèo",
+    name: "Mít Sấy",
+    image: "https://minio.thecoffeehouse.com/image/admin/mit-say_666228.jpg",
+    desc: "Mít sấy khô vàng ươm, giòn rụm, giữ nguyên được vị ngọt lịm của mít tươi.",
     size: "nhỏ",
     money: "20000Đ",
     status: "còn hàng",
@@ -185,16 +182,28 @@ export default function TableCategory() {
               <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Hình ảnh
               </TableCell>
-              <TableCell align="left " style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left "
+                style={{ fontWeight: "bold", width: "321px" }}
+              >
                 Miêu tả
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
-                Thành tiền&nbsp;(Đồng)
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "79px" }}
+              >
+                Thành tiền
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "42px", minWidth: "98px" }}
+              >
                 Tình trạng
               </TableCell>
-              <TableCell align="center" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="center"
+                style={{ fontWeight: "bold", width: "227px" }}
+              >
                 Thao tác
               </TableCell>
             </TableRow>
@@ -219,7 +228,7 @@ export default function TableCategory() {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center" style={{ Width: 200 }}>
+                <TableCell align="center">
                   <Grid container spacing={[20, 20]}>
                     <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
                       <Button

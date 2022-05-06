@@ -15,25 +15,25 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
 });
-const DataCategory = [
+const DataProduct = [
   {
     id: "SP1",
     nodot: 1,
-    name: "Coffee",
+    name: "Cà Phê Hòa Tan Đậm Vị Việt Túi 40x16G",
     image:
-      "https://images.unsplash.com/photo-1592858167090-2473780d894d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1642353251_ca-phe-dam-vi-viet-tui-new.jpeg",
+    desc: "Bắt đầu ngày mới với tách cà phê sữa “Đậm vị Việt” mạnh mẽ sẽ giúp bạn luôn tỉnh táo và hứng khởi cho ngày làm việc thật hiệu quả.",
     size: "50",
-    money: "20000Đ",
+    money: "98.000Đ",
     status: "còn hàng",
   },
   {
     id: "SP2",
     nodot: 2,
-    name: "Coffee",
+    name: "Cà Phê Sữa Đá Pack 6 Lon",
     image:
-      "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/p6-lon-3in1_717216.jpg",
+    desc: "Với thiết kế lon cao trẻ trung, hiện đại và tiện lợi, Cà phê sữa đá lon thơm ngon đậm vị của The Coffee House sẽ đồng hành cùng nhịp sống sôi nổi của tuổi trẻ và giúp bạn có được một ngày làm việc đầy hứng khởi.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -41,10 +41,10 @@ const DataCategory = [
   {
     id: "SP3",
     nodot: 3,
-    name: "Coffee",
+    name: "Trà Sen Túi Lọc Tearoma 20x2G",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1639648068_tra-sen-tui-loc-tearoma-20x2gr.jpg",
+    desc: "Trà túi lọc Tearoma hương sen tinh tế, thanh mát, trên nền trà xanh đậm đà khó quên. Trà túi lọc Tearoma tiện lợi để sử dụng tại văn phòng, tại nhà, đi du lịch,... nhưng vẫn đảm bảo được chất lượng về hương trà tinh tế, vị trà đậm đà.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -52,10 +52,10 @@ const DataCategory = [
   {
     id: "SP4",
     nodot: 4,
-    name: "Coffee",
+    name: "Chocolate Đá Xay",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/Chocolate-ice-blended_400940.jpg",
+    desc: "Sữa và kem tươi béo ngọt được “cá tính hoá” bởi vị chocolate/sô-cô-la đăng đắng. Dành cho các tín đồ hảo ngọt. Lựa chọn hàng đầu nếu bạn đang cần chút năng lượng tinh thần.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -63,10 +63,10 @@ const DataCategory = [
   {
     id: "SP5",
     nodot: 5,
-    name: "Coffee",
+    name: "Chocolate Đá",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/chocolate-da_877186.jpg",
+    desc: "Bột chocolate nguyên chất hoà cùng sữa tươi béo ngậy. Vị ngọt tự nhiên, không gắt cổ, để lại một chút đắng nhẹ, cay cay trên đầu lưỡi.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -74,10 +74,10 @@ const DataCategory = [
   {
     id: "SP6",
     nodot: 6,
-    name: "Coffee",
+    name: "Hi-Tea Yuzu",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1649132466_new-hi-tea-yuzu.jpeg",
+    desc: "Không chỉ nổi bật với sắc đỏ đặc trưng từ trà hoa Hibiscus, Hi-Tea Yuzu còn gây ấn tượng với topping Yuzu (quýt Nhật) lạ miệng, kết hợp cùng trân châu trắng dai giòn sần sật, nhai vui vui.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -85,10 +85,10 @@ const DataCategory = [
   {
     id: "SP7",
     nodot: 7,
-    name: "Coffee",
+    name: "Hi-Tea Vải",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1649132236_new-hi-tea-vai.jpeg",
+    desc: "Chút ngọt ngào của Vải, mix cùng vị chua thanh tao từ trà hoa Hibiscus, mang đến cho bạn thức uống đúng chuẩn vừa ngon, vừa healthy.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -96,10 +96,10 @@ const DataCategory = [
   {
     id: "SP8",
     nodot: 8,
-    name: "Coffee",
+    name: "Gà Xé Lá Chanh",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/kho-ga-la-chanh_995862.jpg",
+    desc: "Thịt gà được xé tơi, mang hương vị mặn, ngọt, cay cay quyện nhau vừa chuẩn, thêm chút thơm thơm thơm từ lá chanh sấy khô giòn giòn xua tan ngay cơn buồn miệng.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -107,10 +107,10 @@ const DataCategory = [
   {
     id: "SP9",
     nodot: 9,
-    name: "Coffee",
+    name: "Mousse Red Velvet",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1645982378_87178784-2593055164301827-6100428679446265856-n.jpg",
+    desc: "Bánh nhiều lớp được phủ lớp kem bên trên bằng Cream cheese.",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -118,10 +118,10 @@ const DataCategory = [
   {
     id: "SP10",
     nodot: 10,
-    name: "Coffee",
+    name: "Bánh Mì VN Thịt Nguội",
     image:
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "tạm được",
+      "https://minio.thecoffeehouse.com/image/admin/1638440015_banh-mi-vietnam.jpg",
+    desc: "Gói gọn trong ổ bánh mì Việt Nam là từng lớp chả, từng lớp jambon hòa quyện cùng bơ và pate thơm lừng, thêm dưa rau cho bữa sáng đầy năng lượng. ",
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
@@ -173,23 +173,35 @@ export default function TableProduct() {
               <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Hình ảnh
               </TableCell>
-              <TableCell align="left " style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left "
+                style={{ fontWeight: "bold", width: "321px" }}
+              >
                 Miêu tả
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
-                Thành tiền&nbsp;(Đồng)
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "79px" }}
+              >
+                Thành tiền
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "42px", minWidth: "98px" }}
+              >
                 Tình trạng
               </TableCell>
-              <TableCell align="center" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="center"
+                style={{ fontWeight: "bold", width: "227px" }}
+              >
                 Thao tác
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {console.log("DataTable", DataCategory)}
-            {DataCategory.map((row) => (
+            {console.log("DataTable", DataProduct)}
+            {DataProduct.map((row) => (
               <TableRow key={row.nodot}>
                 <TableCell align="center" component="th" scope="row">
                   {row.nodot}
@@ -207,7 +219,7 @@ export default function TableProduct() {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center" style={{ Width: 200 }}>
+                <TableCell align="center">
                   <Grid container spacing={[20, 20]}>
                     <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
                       <Button
