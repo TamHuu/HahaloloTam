@@ -9,9 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormDialog from "./FormDialog";
-import { Avatar, Button } from "@material-ui/core";
+import { Avatar, Button, Grid } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
-
 
 const useStyles = makeStyles({
   table: {
@@ -146,15 +145,18 @@ const rows = [
 ];
 export default function BasicTable({ clickHandler }) {
   const classes = useStyles();
+  const [toggle, setToggle] = React.useState(false);
   const [DataTable, setDataTable] = useState(rows);
   const [showDialog, setShowDialog] = useState(false);
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
-  const [dense, setDense] = React.useState(false);
+
   const handleDelete = (id) => {
     setDataTable(DataTable.filter((item) => item.id !== id));
   };
-
+  const toggleIt = () => {
+    setToggle(!toggle);
+  };
   const handleRead = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id);
     setDataDialog(DataTable[idRow]);
@@ -174,9 +176,7 @@ export default function BasicTable({ clickHandler }) {
     setShowDialog(true);
     setEditDialog(false);
   };
-  const handleChangeDense = () => {
-    setDense(!dense);
-  };
+
   const updateDataHandler = (item) => {
     console.log(item);
 
@@ -224,6 +224,7 @@ export default function BasicTable({ clickHandler }) {
         </Button>
       </div>
       <FormControlLabel
+        className={toggle && "body-color"}
         variant="contained"
         color="secondary"
         style={{
@@ -232,10 +233,10 @@ export default function BasicTable({ clickHandler }) {
         }}
         control={
           <Switch
-            style={{ Color: "white", padding: "10px" }}
-            checked={dense}
+            style={{ Color: "white", padding: "10px", BackgroundColor: "red" }}
             color="secondary"
-            onChange={handleChangeDense}
+            bgcolor="secondary.main"
+            onChange={toggleIt}
           />
         }
         label="Đổi màu giao diện"
@@ -262,10 +263,7 @@ export default function BasicTable({ clickHandler }) {
               >
                 STT
               </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold", width: "9%" }}
-              >
+              <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Sản phẩm
               </TableCell>
               <TableCell align="left" style={{ fontWeight: "bold" }}>
@@ -273,20 +271,26 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="left "
-                style={{ fontWeight: "bold", width: "22%" }}
+                style={{ fontWeight: "bold", width: "321px" }}
               >
                 Miêu tả
               </TableCell>
               <TableCell
                 align="right"
-                style={{ fontWeight: "bold", width: "11%", padding: "1px" }}
+                style={{ fontWeight: "bold", width: "79px" }}
               >
-                Thành tiền&nbsp;(Đồng)
+                Thành tiền
               </TableCell>
-              <TableCell align="right" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="right"
+                style={{ fontWeight: "bold", width: "42px", minWidth: "98px" }}
+              >
                 Tình trạng
               </TableCell>
-              <TableCell align="center" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="center"
+                style={{ fontWeight: "bold", width: "227px" }}
+              >
                 Thao tác
               </TableCell>
             </TableRow>
@@ -311,34 +315,41 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell
-                  align="center"
-                  style={{ width: "19%", padding: "1px" }}
-                >
-                  <Button
-                    onClick={() => handleRead(row.id)}
-                    variant="contained"
-                    color="secondary"
-                    style={{ marginRight: "10px" }}
-                  >
-                    Xem
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(row.id)}
-                    variant="contained"
-                    style={{ marginRight: "10px" }}
-                    color="secondary"
-                  >
-                    Xóa
-                  </Button>
+                <TableCell align="center">
+                  <Grid container spacing={[20, 20]}>
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        onClick={() => handleRead(row.id)}
+                        variant="contained"
+                        color="secondary"
+                        style={{ margin: 5 }}
+                      >
+                        Xem
+                      </Button>
+                    </Grid>
 
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => handleUpdate(row.id)}
-                  >
-                    Sửa
-                  </Button>
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        onClick={() => handleDelete(row.id)}
+                        variant="contained"
+                        style={{ margin: 5 }}
+                        color="secondary"
+                      >
+                        Xóa
+                      </Button>
+                    </Grid>
+
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{ margin: 5 }}
+                        onClick={() => handleUpdate(row.id)}
+                      >
+                        Sửa
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
             ))}

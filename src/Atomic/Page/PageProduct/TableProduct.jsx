@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Avatar } from "@material-ui/core";
+import { Avatar, Grid } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -207,25 +207,38 @@ export default function TableProduct() {
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center" style={{ padding: "20px" }}>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    style={{ marginRight: "10px" }}
-                  >
-                    Xem
-                  </Button>
-                  <Button
-                    variant="contained"
-                    style={{ marginRight: "10px" }}
-                    color="secondary"
-                  >
-                    Xóa
-                  </Button>
+                <TableCell align="center" style={{ Width: 200 }}>
+                  <Grid container spacing={[20, 20]}>
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{ margin: 5 }}
+                      >
+                        Xem
+                      </Button>
+                    </Grid>
 
-                  <Button variant="contained" color="secondary">
-                    Sửa
-                  </Button>
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        variant="contained"
+                        style={{ margin: 5 }}
+                        color="secondary"
+                      >
+                        Xóa
+                      </Button>
+                    </Grid>
+
+                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{ margin: 5 }}
+                      >
+                        Sửa
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
             ))}
