@@ -17,7 +17,6 @@ export default function ComboBox() {
   );
 }
 
-
 const rows = [
   {
     id: "SP1",

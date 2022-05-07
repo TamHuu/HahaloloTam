@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import BasicTable from "./Atomic/Table/BasicTable";
+
 
 import TableCategory from "./Atomic/Page/PageCategory/TableCategory";
 import TableProduct from "./Atomic/Page/PageProduct/TableProduct";
@@ -100,9 +100,9 @@ function App() {
         />
         <main className={classes.content}>
           <Switch>
-            <Route exact path="/" component={BasicTable} />
             <Route path="/category" component={TableCategory} />
             <Route path="/product" component={TableProduct} />
+            <Route path="/" component={TableCategory} />
           </Switch>
         </main>
       </div>
