@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flex: 1,
     backgroundSize: "cover",
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     backgroundImage:
       "url(https://www.highlandscoffee.com.vn/vnt_upload/weblink/HCO-7666-CAFFEINE-FIX-DIGITAL-WEB-1440X460.jpg)",
     backgroundPosition: "bottom",
