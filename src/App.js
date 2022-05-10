@@ -1,15 +1,10 @@
 import MiniDrawer from "./Atomic/Drawer/Drawer";
 import React from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-
-
 import TableCategory from "./Atomic/Page/PageCategory/TableCategory";
 import TableProduct from "./Atomic/Page/PageProduct/TableProduct";
-
+import "./App.css";
 
 const drawerWidth = 240;
 
@@ -71,12 +66,13 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flex: 1,
+    backgroundSize: "cover",
     padding: theme.spacing(3),
     backgroundImage:
-      "url(https://media.istockphoto.com/photos/five-cocktails-in-hands-joined-in-celebratory-toast-picture-id1303977605?b=1&k=20&m=1303977605&s=170667a&w=0&h=P5Kio_7K3oGKmheY6QYyeb6I6AdaAI2avS1VYSzeknU=)",
-    height: "100vh",
+      "url(https://www.highlandscoffee.com.vn/vnt_upload/weblink/HCO-7666-CAFFEINE-FIX-DIGITAL-WEB-1440X460.jpg)",
+    backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    padding: "80px",
   },
 }));
 function App() {

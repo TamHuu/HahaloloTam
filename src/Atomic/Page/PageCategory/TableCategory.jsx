@@ -9,13 +9,19 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import FormDialog from "./FormDialog";
-import { Avatar, Button, Grid, TextField } from "@material-ui/core";
-
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+} from "@material-ui/core";
+import Search from "../../Search/Search";
+import Sort from "../../Sort/Sort";
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
-    width: "100%",
-    height: "400px",
+    minWidth: "650px",
     overflow: "auto",
   },
 });
@@ -209,26 +215,44 @@ export default function BasicTable({ clickHandler }) {
       )}
       <div
         style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          padding: "20px",
-          marginTop: "159px",
+          marginTop: "69px",
+          color: "red",
+          backgoundColor: "white",
+          fontSize: "xx-large",
         }}
       >
-        <TextField>Sản Phẩm</TextField>
-        <Button variant="contained" color="secondary" onClick={handleCreate}>
-          Thêm
-        </Button>
+        Danh sách danh mục
       </div>
+      <Card>
+        <CardContent>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={2}>
+              <Sort />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Search />
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+      <br />
+      <Box display="flex" justifyContent="flex-end" p={1}>
+        {" "}
+        <Button variant="contained" color="secondary" onClick={handleCreate}>
+          Thêm Sản Phẩm
+        </Button>{" "}
+      </Box>
 
       <TableContainer
         component={Paper}
         style={{
-          height: "400px",
-          overflow: "auto",
+          maxHeight: "440px",
+          overflowX: "auto",
+          width: "100%",
         }}
       >
         <Table
+          style={{ margin: "1px" }}
           stickyHeader
           aria-label="sticky table"
           size="small"
@@ -243,7 +267,10 @@ export default function BasicTable({ clickHandler }) {
               >
                 STT
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold", width: "10px" }}
+              >
                 Sản phẩm
               </TableCell>
               <TableCell align="left" style={{ fontWeight: "bold" }}>
@@ -251,25 +278,25 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="left "
-                style={{ fontWeight: "bold", width: "321px" }}
+                style={{ fontWeight: "bold", width: "300px" }}
               >
                 Miêu tả
               </TableCell>
               <TableCell
                 align="right"
-                style={{ fontWeight: "bold", width: "79px" }}
+                style={{ fontWeight: "bold", width: "50px" }}
               >
                 Thành tiền
               </TableCell>
               <TableCell
-                align="right"
-                style={{ fontWeight: "bold", width: "42px", minWidth: "98px" }}
+                align="left"
+                style={{ fontWeight: "bold", width: "50px" }}
               >
                 Tình trạng
               </TableCell>
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "227px" }}
+                style={{ fontWeight: "bold", width: "200px" }}
               >
                 Thao tác
               </TableCell>
@@ -294,10 +321,10 @@ export default function BasicTable({ clickHandler }) {
                 </TableCell>
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
-                <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center">
+                <TableCell align="left">{row.status}</TableCell>
+                <TableCell align="left">
                   <Grid container spacing={[20, 20]}>
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs=" auto ">
                       <Button
                         onClick={() => handleRead(row.id)}
                         variant="contained"
@@ -308,7 +335,7 @@ export default function BasicTable({ clickHandler }) {
                       </Button>
                     </Grid>
 
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs="auto">
                       <Button
                         onClick={() => handleDelete(row.id)}
                         variant="contained"
@@ -319,7 +346,7 @@ export default function BasicTable({ clickHandler }) {
                       </Button>
                     </Grid>
 
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs="auto">
                       <Button
                         variant="contained"
                         color="secondary"

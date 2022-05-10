@@ -7,12 +7,17 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Avatar, Grid } from "@material-ui/core";
+import { Avatar, CardContent, Grid, Card, Box } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { useState } from "react";
+import Search from "../../Search/Search";
+import FormDialog from "../PageCategory/FormDialog";
+import Sort from "../../Sort/Sort";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: "650px",
+    overflow: "auto",
   },
 });
 const DataProduct = [
@@ -21,7 +26,7 @@ const DataProduct = [
     nodot: 1,
     name: "Cà Phê Hòa Tan Đậm Vị Việt Túi 40x16G",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1642353251_ca-phe-dam-vi-viet-tui-new.jpeg",
+      "https:minio.thecoffeehouse.com/image/admin/1642353251_ca-phe-dam-vi-viet-tui-new.jpeg",
     desc: "Bắt đầu ngày mới với tách cà phê sữa “Đậm vị Việt” mạnh mẽ sẽ giúp bạn luôn tỉnh táo và hứng khởi cho ngày làm việc thật hiệu quả.",
     size: "50",
     money: "98.000Đ",
@@ -31,8 +36,7 @@ const DataProduct = [
     id: "SP2",
     nodot: 2,
     name: "Cà Phê Sữa Đá Pack 6 Lon",
-    image:
-      "https://minio.thecoffeehouse.com/image/admin/p6-lon-3in1_717216.jpg",
+    image: "https:minio.thecoffeehouse.com/image/admin/p6-lon-3in1_717216.jpg",
     desc: "Với thiết kế lon cao trẻ trung, hiện đại và tiện lợi, Cà phê sữa đá lon thơm ngon đậm vị của The Coffee House sẽ đồng hành cùng nhịp sống sôi nổi của tuổi trẻ và giúp bạn có được một ngày làm việc đầy hứng khởi.",
     size: 50,
     money: "200000Đ",
@@ -43,7 +47,7 @@ const DataProduct = [
     nodot: 3,
     name: "Trà Sen Túi Lọc Tearoma 20x2G",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1639648068_tra-sen-tui-loc-tearoma-20x2gr.jpg",
+      "https:minio.thecoffeehouse.com/image/admin/1639648068_tra-sen-tui-loc-tearoma-20x2gr.jpg",
     desc: "Trà túi lọc Tearoma hương sen tinh tế, thanh mát, trên nền trà xanh đậm đà khó quên. Trà túi lọc Tearoma tiện lợi để sử dụng tại văn phòng, tại nhà, đi du lịch,... nhưng vẫn đảm bảo được chất lượng về hương trà tinh tế, vị trà đậm đà.",
     size: 50,
     money: "200000Đ",
@@ -54,7 +58,7 @@ const DataProduct = [
     nodot: 4,
     name: "Chocolate Đá Xay",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/Chocolate-ice-blended_400940.jpg",
+      "https:minio.thecoffeehouse.com/image/admin/Chocolate-ice-blended_400940.jpg",
     desc: "Sữa và kem tươi béo ngọt được “cá tính hoá” bởi vị chocolate/sô-cô-la đăng đắng. Dành cho các tín đồ hảo ngọt. Lựa chọn hàng đầu nếu bạn đang cần chút năng lượng tinh thần.",
     size: 50,
     money: "200000Đ",
@@ -64,8 +68,7 @@ const DataProduct = [
     id: "SP5",
     nodot: 5,
     name: "Chocolate Đá",
-    image:
-      "https://minio.thecoffeehouse.com/image/admin/chocolate-da_877186.jpg",
+    image: "https:minio.thecoffeehouse.com/image/admin/chocolate-da_877186.jpg",
     desc: "Bột chocolate nguyên chất hoà cùng sữa tươi béo ngậy. Vị ngọt tự nhiên, không gắt cổ, để lại một chút đắng nhẹ, cay cay trên đầu lưỡi.",
     size: 50,
     money: "200000Đ",
@@ -76,7 +79,7 @@ const DataProduct = [
     nodot: 6,
     name: "Hi-Tea Yuzu",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1649132466_new-hi-tea-yuzu.jpeg",
+      "https:minio.thecoffeehouse.com/image/admin/1649132466_new-hi-tea-yuzu.jpeg",
     desc: "Không chỉ nổi bật với sắc đỏ đặc trưng từ trà hoa Hibiscus, Hi-Tea Yuzu còn gây ấn tượng với topping Yuzu (quýt Nhật) lạ miệng, kết hợp cùng trân châu trắng dai giòn sần sật, nhai vui vui.",
     size: 50,
     money: "200000Đ",
@@ -87,7 +90,7 @@ const DataProduct = [
     nodot: 7,
     name: "Hi-Tea Vải",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1649132236_new-hi-tea-vai.jpeg",
+      "https:minio.thecoffeehouse.com/image/admin/1649132236_new-hi-tea-vai.jpeg",
     desc: "Chút ngọt ngào của Vải, mix cùng vị chua thanh tao từ trà hoa Hibiscus, mang đến cho bạn thức uống đúng chuẩn vừa ngon, vừa healthy.",
     size: 50,
     money: "200000Đ",
@@ -98,7 +101,7 @@ const DataProduct = [
     nodot: 8,
     name: "Gà Xé Lá Chanh",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/kho-ga-la-chanh_995862.jpg",
+      "https:minio.thecoffeehouse.com/image/admin/kho-ga-la-chanh_995862.jpg",
     desc: "Thịt gà được xé tơi, mang hương vị mặn, ngọt, cay cay quyện nhau vừa chuẩn, thêm chút thơm thơm thơm từ lá chanh sấy khô giòn giòn xua tan ngay cơn buồn miệng.",
     size: 50,
     money: "200000Đ",
@@ -109,7 +112,7 @@ const DataProduct = [
     nodot: 9,
     name: "Mousse Red Velvet",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1645982378_87178784-2593055164301827-6100428679446265856-n.jpg",
+      "https:minio.thecoffeehouse.com/image/admin/1645982378_87178784-2593055164301827-6100428679446265856-n.jpg",
     desc: "Bánh nhiều lớp được phủ lớp kem bên trên bằng Cream cheese.",
     size: 50,
     money: "200000Đ",
@@ -120,7 +123,7 @@ const DataProduct = [
     nodot: 10,
     name: "Bánh Mì VN Thịt Nguội",
     image:
-      "https://minio.thecoffeehouse.com/image/admin/1638440015_banh-mi-vietnam.jpg",
+      "https:minio.thecoffeehouse.com/image/admin/1638440015_banh-mi-vietnam.jpg",
     desc: "Gói gọn trong ổ bánh mì Việt Nam là từng lớp chả, từng lớp jambon hòa quyện cùng bơ và pate thơm lừng, thêm dưa rau cho bữa sáng đầy năng lượng. ",
     size: 50,
     money: "200000Đ",
@@ -129,30 +132,111 @@ const DataProduct = [
 ];
 export default function TableProduct() {
   const classes = useStyles();
+  const [DataTable, setDataTable] = useState(DataProduct);
+  const [showDialog, setShowDialog] = useState(false);
+  const [dataDialog, setDataDialog] = useState({});
+  const [editDialog, setEditDialog] = useState(true);
 
+  const handleDelete = (id) => {
+    setDataTable(DataTable.filter((item) => item.id !== id));
+  };
+
+  const handleRead = (id) => {
+    const idRow = DataTable.findIndex((item) => item.id === id);
+    setDataDialog(DataTable[idRow]);
+    setEditDialog(true);
+    setShowDialog(true);
+  };
+
+  const handleUpdate = (id) => {
+    const idRow = DataTable.findIndex((item) => item.id === id);
+    setDataDialog(DataTable[idRow]);
+    setShowDialog(true);
+    setEditDialog(false);
+  };
+
+  const handleCreate = () => {
+    setDataDialog({});
+    setShowDialog(true);
+    setEditDialog(false);
+  };
+
+  const updateDataHandler = (item) => {
+    console.log(item);
+
+    const tempDataTable = [...DataTable];
+    const indexEditItem = tempDataTable.findIndex((row) => row.id === item.id);
+
+    if (indexEditItem !== -1) {
+      tempDataTable[indexEditItem] = { ...item };
+      setDataTable([...tempDataTable]);
+      setShowDialog(false);
+    } else {
+      const length = tempDataTable.length - 1;
+      tempDataTable.push({
+        ...item,
+        id: tempDataTable[length].id + 1,
+        nodot: tempDataTable[length].nodot + 1,
+      });
+
+      setDataTable(tempDataTable);
+      setShowDialog(false);
+    }
+  };
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          padding: "20px",
-          marginTop: "159px",
-        }}
-      >
-        <Button variant="contained" color="secondary">
-          Thêm
-        </Button>
+      {showDialog && (
+        <FormDialog
+          setShowDialog={setShowDialog}
+          row={dataDialog}
+          editDialog={editDialog}
+          setEditDialog={setEditDialog}
+          updateData={updateDataHandler}
+        ></FormDialog>
+      )}
+      <div>
+        <div
+          style={{
+            marginTop: "79px",
+            color: "red",
+            backgoundColor: "white",
+            fontSize: "xx-large",
+          }}
+        >
+          Danh sách sản phẩm
+        </div>
+
+        <Card>
+          <CardContent>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={12} sm={2}>
+                <Sort />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Search />
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+        <br />
+        <Box display="flex" justifyContent="flex-end" p={1}>
+          {" "}
+          <Button variant="contained" color="secondary" onClick={handleCreate}>
+            Thêm Sản Phẩm
+          </Button>{" "}
+        </Box>
       </div>
 
       <TableContainer
         component={Paper}
         style={{
-          height: "400px",
-          overflow: "auto",
+          maxHeight: "440px",
+          overflowX: "auto",
+          width: "100%",
         }}
       >
         <Table
+          style={{ margin: "1px" }}
           stickyHeader
           aria-label="sticky table"
           size="small"
@@ -167,7 +251,10 @@ export default function TableProduct() {
               >
                 STT
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold", width: "10px" }}
+              >
                 Sản phẩm
               </TableCell>
               <TableCell align="left" style={{ fontWeight: "bold" }}>
@@ -181,27 +268,27 @@ export default function TableProduct() {
               </TableCell>
               <TableCell
                 align="right"
-                style={{ fontWeight: "bold", width: "79px" }}
+                style={{ fontWeight: "bold", width: "70px" }}
               >
                 Thành tiền
               </TableCell>
               <TableCell
-                align="right"
-                style={{ fontWeight: "bold", width: "42px", minWidth: "98px" }}
+                align="left"
+                style={{ fontWeight: "bold", width: "75px" }}
               >
                 Tình trạng
               </TableCell>
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "227px" }}
+                style={{ fontWeight: "bold", width: "217px" }}
               >
                 Thao tác
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {console.log("DataTable", DataProduct)}
-            {DataProduct.map((row) => (
+            {console.log("DataTable", DataTable)}
+            {DataTable.map((row) => (
               <TableRow key={row.nodot}>
                 <TableCell align="center" component="th" scope="row">
                   {row.nodot}
@@ -218,11 +305,12 @@ export default function TableProduct() {
                 </TableCell>
                 <TableCell align="left">{row.desc}</TableCell>
                 <TableCell align="right">{row.money}</TableCell>
-                <TableCell align="right">{row.status}</TableCell>
-                <TableCell align="center">
+                <TableCell align="left">{row.status}</TableCell>
+                <TableCell align="left">
                   <Grid container spacing={[20, 20]}>
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs=" auto ">
                       <Button
+                        onClick={() => handleRead(row.id)}
                         variant="contained"
                         color="secondary"
                         style={{ margin: 5 }}
@@ -231,8 +319,9 @@ export default function TableProduct() {
                       </Button>
                     </Grid>
 
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs="auto">
                       <Button
+                        onClick={() => handleDelete(row.id)}
                         variant="contained"
                         style={{ margin: 5 }}
                         color="secondary"
@@ -241,11 +330,12 @@ export default function TableProduct() {
                       </Button>
                     </Grid>
 
-                    <Grid xxl={4} xl={4} lg={4} md={12} xs={12}>
+                    <Grid xs="auto">
                       <Button
                         variant="contained"
                         color="secondary"
                         style={{ margin: 5 }}
+                        onClick={() => handleUpdate(row.id)}
                       >
                         Sửa
                       </Button>
