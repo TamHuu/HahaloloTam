@@ -149,7 +149,10 @@ const DataProduct = [
     name: "Cà Phê",
     image:
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    desc: "Việt Nam tự hào sở hữu một di sản văn hóa cà phê giàu có, và 'Phin' chính là linh hồn, là nét văn hóa thưởng thức cà phê đã ăn sâu vào tiềm thức biết bao người Việt. Cà phê rang xay được chiết xuất chậm rãi từng giọt một thông qua dụng cụ lọc bằng kim loại có tên là 'Phin', cũng giống như thể hiện sự sâu sắc trong từng suy nghĩ và chân thành trong những mối quan hệ hiện hữu. Bạn có thể tùy thích lựa chọn uống nóng hoặc dùng chung với đá, có hoặc không có sữa đặc. Highlands Coffee tự hào phục vụ cà phê Việt theo cách truyền thống của người Việt.",
+    desc: "Việt Nam tự hào sở hữu một di sản văn hóa cà phê giàu có, và 'Phin' chính là linh hồn, là nét văn hóa thưởng thức cà phê đã ăn sâu vào tiềm thức biết bao người Việt. ",
+    size: 50,
+    money: "200000Đ",
+    status: "còn hàng",
   },
   {
     id: "SP12",
@@ -158,6 +161,9 @@ const DataProduct = [
     image:
       "https://media.istockphoto.com/photos/coffee-with-ice-cream-and-chocolate-picture-id659271566?b=1&k=20&m=659271566&s=170667a&w=0&h=XMNqD-i9-AXhf3bRaXOX3Q8d_GOpghhlP0BJxIDUD1k=",
     desc: "Nếu bạn là người yêu thích những gì mới mẻ và sành điệu để khơi nguồn cảm hứng. Hãy thưởng thức ngay các món nước đá xay độc đáo mang hương vị tự nhiên tại Highlands Coffee để đánh thức mọi giác quan của bạn, giúp bạn luôn căng tràn sức sống.",
+    size: 50,
+    money: "200000Đ",
+    status: "còn hàng",
   },
   {
     id: "SP13",
@@ -167,6 +173,9 @@ const DataProduct = [
       "https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     desc: "Hương vị tự nhiên, thơm ngon của Trà Việt với phong cách hiện đại tại Highlands Coffee sẽ giúp bạn gợi mở vị giác của bản thân và tận hưởng một cảm giác thật khoan khoái, tươi mới.",
     money: "40.000Đ",
+    size: 50,
+    money: "200000Đ",
+    status: "còn hàng",
   },
   {
     id: "SP14",
@@ -175,6 +184,9 @@ const DataProduct = [
     image:
       "https://images.unsplash.com/photo-1488477304112-4944851de03d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNha2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     desc: "Còn gì tuyệt vời hơn khi kết hợp thưởng thức đồ uống của bạn cùng với những chiếc bánh ngọt ngon tinh tế được làm thủ công ngay tại bếp bánh của Highlands Coffee. Những chiếc bánh của chúng tôi mang hương vị đặc trưng của ẩm thực Việt và còn là sự Tận Tâm, gửi gắm mà chúng tôi dành cho Quý khách hàng.",
+    size: 50,
+    money: "200000Đ",
+    status: "còn hàng",
   },
 ];
 export default function TableProduct() {
@@ -320,12 +332,12 @@ export default function TableProduct() {
               </TableCell>
               <TableCell
                 align="left"
-                style={{ fontWeight: "bold", width: "10px" }}
+                style={{ fontWeight: "bold", width: "100px" }}
               >
                 Sản phẩm
               </TableCell>
               <TableCell
-                align="left"
+                align="center"
                 style={{ fontWeight: "bold", width: "10px" }}
               >
                 Hình ảnh
@@ -336,10 +348,26 @@ export default function TableProduct() {
               >
                 Miêu tả
               </TableCell>
+              <TableCell
+                align="right "
+                style={{
+                  fontWeight: "bold",
+                  width: "70px",
+                  // textAlign: "center",
+                }}
+              >
+                Thành tiền
+              </TableCell>
+              <TableCell
+                align="left "
+                style={{ fontWeight: "bold", width: "70px" }}
+              >
+                Tình trạng
+              </TableCell>
 
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "150px" }}
+                style={{ fontWeight: "bold", width: "200px" }}
               >
                 Thao tác
               </TableCell>
@@ -353,16 +381,25 @@ export default function TableProduct() {
                 </TableCell>
 
                 <TableCell align="left">{row.name}</TableCell>
-                <TableCell align="left">
+                <TableCell align="center" style={{ textAlign: "center" }}>
                   <Avatar
-                    style={{ height: "100px", width: "100px", padding: "5px" }}
+                    style={{
+                      height: "100px",
+                      width: "100px",
+                      padding: "5px",
+                    }}
                     alt="#"
                     src={row.image}
                     variant="square"
                   />
                 </TableCell>
                 <TableCell align="left">{row.desc}</TableCell>
-
+                <TableCell style={{ textAlign: "center" }} align="right">
+                  {row.money}
+                </TableCell>
+                <TableCell style={{ textAlign: "center" }} align="left">
+                  {row.status}
+                </TableCell>
                 <TableCell align="center">
                   <Grid container spacing={[20, 20]} justifyContent="center">
                     <Grid xs=" auto ">

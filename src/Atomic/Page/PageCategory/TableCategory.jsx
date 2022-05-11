@@ -218,7 +218,7 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="left"
-                style={{ fontWeight: "bold", width: "10px" }}
+                style={{ fontWeight: "bold", width: "80px" }}
               >
                 Sản phẩm
               </TableCell>
@@ -229,7 +229,7 @@ export default function BasicTable({ clickHandler }) {
                 Hình ảnh
               </TableCell>
               <TableCell
-                align="left "
+                align="center "
                 style={{ fontWeight: "bold", width: "300px" }}
               >
                 Miêu tả
@@ -237,7 +237,7 @@ export default function BasicTable({ clickHandler }) {
 
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "150px" }}
+                style={{ fontWeight: "bold", width: "250px" }}
               >
                 Thao tác
               </TableCell>

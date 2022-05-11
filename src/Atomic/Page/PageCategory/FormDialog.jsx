@@ -38,7 +38,7 @@ export default function CustomizedDialogs(props) {
   const [name, setName] = useState(props.row.name || "");
   const [image, setImage] = useState(props.row.image || "");
   const [desc, setDesc] = useState(props.row.desc || "");
-  const [money, setMoney] = useState(props.row.money || "");
+  // const [money, setMoney] = useState(props.row.money || "");
   // const [status, setStatus] = useState(props.row.status || "");
 
   const handleClose = () => {
@@ -57,7 +57,7 @@ export default function CustomizedDialogs(props) {
       name: name,
       image,
       desc,
-      money,
+      // money,
       // status,
     });
   };
