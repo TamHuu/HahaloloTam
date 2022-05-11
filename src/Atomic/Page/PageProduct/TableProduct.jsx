@@ -172,7 +172,7 @@ const DataProduct = [
     image:
       "https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     desc: "Hương vị tự nhiên, thơm ngon của Trà Việt với phong cách hiện đại tại Highlands Coffee sẽ giúp bạn gợi mở vị giác của bản thân và tận hưởng một cảm giác thật khoan khoái, tươi mới.",
-    money: "40.000Đ",
+
     size: 50,
     money: "200000Đ",
     status: "còn hàng",
