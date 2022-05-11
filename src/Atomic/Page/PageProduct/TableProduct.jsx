@@ -23,7 +23,7 @@ import Sort from "../../Sort/Sort";
 import { Visibility } from "@material-ui/icons";
 import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
-import _ from "lodash";
+// import _ from "lodash";
 
 const useStyles = makeStyles({
   table: {
