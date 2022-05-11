@@ -122,6 +122,16 @@ export default function CustomizedDialogs(props) {
         </Typography>
       </DialogContent>
       <DialogActions>
+        {!props.editDialog && (
+          <Button
+            autoFocus
+            color="green"
+            onClick={handleSave}
+            variant="contained"
+          >
+            Lưu
+          </Button>
+        )}
         <Button
           autoFocus
           color="secondary"
@@ -130,16 +140,6 @@ export default function CustomizedDialogs(props) {
         >
           Thoát
         </Button>
-        {!props.editDialog && (
-          <Button
-            autoFocus
-            color="secondary"
-            onClick={handleSave}
-            variant="contained"
-          >
-            Lưu
-          </Button>
-        )}
       </DialogActions>
     </Dialog>
   );

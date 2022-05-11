@@ -277,13 +277,13 @@ export default function TableProduct() {
       <div
         style={{
           marginTop: "30px",
-
+          color: "green",
           backgoundColor: "white",
           fontSize: "xx-large",
           marginLeft: "80px",
         }}
       >
-        Danh sách sản phẩm
+        Danh Sách Sản Phẩm
       </div>
       <Card style={{ marginLeft: "80px", width: "90%" }}>
         <CardContent>

@@ -9,8 +9,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Visibility } from "@material-ui/icons";
-import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+import EditIcon from "@material-ui/icons/Edit";
 import FormDialog from "./FormDialog";
+import { green } from "@material-ui/core/colors";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   Avatar,
   Box,
@@ -80,7 +82,11 @@ export default function BasicTable({ clickHandler }) {
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
-
+  const theme = createTheme({
+    palette: {
+      primary: green,
+    },
+  });
   let filtered = DataTable;
 
   if (search) {
@@ -153,13 +159,13 @@ export default function BasicTable({ clickHandler }) {
       <div
         style={{
           marginTop: "30px",
-
+          color: "green",
           backgoundColor: "white",
           fontSize: "xx-large",
           marginLeft: "80px",
         }}
       >
-        Danh sách danh mục
+        Danh Sách Danh Mục
       </div>
       <Card style={{ marginLeft: "80px", width: "90%" }}>
         <CardContent>
@@ -186,9 +192,11 @@ export default function BasicTable({ clickHandler }) {
         p={1}
       >
         {" "}
-        <Button variant="contained" color="primary" onClick={handleCreate}>
-          Thêm Danh Mục
-        </Button>{" "}
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" color="primary" onClick={handleCreate}>
+            Thêm danh mục
+          </Button>
+        </ThemeProvider>
       </Box>
 
       <TableContainer
@@ -291,7 +299,7 @@ export default function BasicTable({ clickHandler }) {
                         style={{ margin: 5 }}
                         onClick={() => handleUpdate(row.id)}
                       >
-                        <SystemUpdateAltIcon />
+                        <EditIcon />
                       </IconButton>
                     </Grid>
                   </Grid>
