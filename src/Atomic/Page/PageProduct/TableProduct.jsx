@@ -7,12 +7,23 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Avatar, CardContent, Grid, Card, Box } from "@material-ui/core";
+import {
+  Avatar,
+  CardContent,
+  Grid,
+  Card,
+  Box,
+  IconButton,
+} from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import Search from "../../Search/Search";
 import FormDialog from "../PageCategory/FormDialog";
 import Sort from "../../Sort/Sort";
+import { Visibility } from "@material-ui/icons";
+import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+import DeleteIcon from "@material-ui/icons/Delete";
+import _ from "lodash";
 
 const useStyles = makeStyles({
   table: {
@@ -81,7 +92,7 @@ const DataProduct = [
     nodot: 6,
     name: "Hi-Tea Yuzu",
     image:
-      "https:minio.thecoffeehouse.com/image/admin/1649132466_new-hi-tea-yuzu.jpeg",
+      "https://images.unsplash.com/photo-1589080366527-92a1126ec8f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI1fHxkcmlua3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     desc: "Không chỉ nổi bật với sắc đỏ đặc trưng từ trà hoa Hibiscus, Hi-Tea Yuzu còn gây ấn tượng với topping Yuzu (quýt Nhật) lạ miệng, kết hợp cùng trân châu trắng dai giòn sần sật, nhai vui vui.",
     size: 50,
     money: "200000Đ",
@@ -131,6 +142,40 @@ const DataProduct = [
     money: "200000Đ",
     status: "còn hàng",
   },
+
+  {
+    id: "SP11",
+    nodot: 11,
+    name: "Cà Phê",
+    image:
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "Việt Nam tự hào sở hữu một di sản văn hóa cà phê giàu có, và 'Phin' chính là linh hồn, là nét văn hóa thưởng thức cà phê đã ăn sâu vào tiềm thức biết bao người Việt. Cà phê rang xay được chiết xuất chậm rãi từng giọt một thông qua dụng cụ lọc bằng kim loại có tên là 'Phin', cũng giống như thể hiện sự sâu sắc trong từng suy nghĩ và chân thành trong những mối quan hệ hiện hữu. Bạn có thể tùy thích lựa chọn uống nóng hoặc dùng chung với đá, có hoặc không có sữa đặc. Highlands Coffee tự hào phục vụ cà phê Việt theo cách truyền thống của người Việt.",
+  },
+  {
+    id: "SP12",
+    nodot: 12,
+    name: " Freeze",
+    image:
+      "https://media.istockphoto.com/photos/coffee-with-ice-cream-and-chocolate-picture-id659271566?b=1&k=20&m=659271566&s=170667a&w=0&h=XMNqD-i9-AXhf3bRaXOX3Q8d_GOpghhlP0BJxIDUD1k=",
+    desc: "Nếu bạn là người yêu thích những gì mới mẻ và sành điệu để khơi nguồn cảm hứng. Hãy thưởng thức ngay các món nước đá xay độc đáo mang hương vị tự nhiên tại Highlands Coffee để đánh thức mọi giác quan của bạn, giúp bạn luôn căng tràn sức sống.",
+  },
+  {
+    id: "SP13",
+    nodot: 13,
+    name: "Trà",
+    image:
+      "https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+    desc: "Hương vị tự nhiên, thơm ngon của Trà Việt với phong cách hiện đại tại Highlands Coffee sẽ giúp bạn gợi mở vị giác của bản thân và tận hưởng một cảm giác thật khoan khoái, tươi mới.",
+    money: "40.000Đ",
+  },
+  {
+    id: "SP14",
+    nodot: 14,
+    name: "Bánh Ngọt",
+    image:
+      "https://images.unsplash.com/photo-1488477304112-4944851de03d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNha2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+    desc: "Còn gì tuyệt vời hơn khi kết hợp thưởng thức đồ uống của bạn cùng với những chiếc bánh ngọt ngon tinh tế được làm thủ công ngay tại bếp bánh của Highlands Coffee. Những chiếc bánh của chúng tôi mang hương vị đặc trưng của ẩm thực Việt và còn là sự Tận Tâm, gửi gắm mà chúng tôi dành cho Quý khách hàng.",
+  },
 ];
 export default function TableProduct() {
   const classes = useStyles();
@@ -138,6 +183,19 @@ export default function TableProduct() {
   const [showDialog, setShowDialog] = useState(false);
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
+  const [search, setSearch] = useState("");
+
+  let filtered = DataTable;
+
+  if (search) {
+    filtered = [...filtered].filter((item) =>
+      item.name.toLowerCase().startsWith(search.toLowerCase())
+    );
+  }
+
+  const searchChangeHandler = (value) => {
+    setSearch(value);
+  };
 
   const handleDelete = (id) => {
     setDataTable(DataTable.filter((item) => item.id !== id));
@@ -164,8 +222,6 @@ export default function TableProduct() {
   };
 
   const updateDataHandler = (item) => {
-    console.log(item);
-
     const tempDataTable = [...DataTable];
     const indexEditItem = tempDataTable.findIndex((row) => row.id === item.id);
 
@@ -185,6 +241,7 @@ export default function TableProduct() {
       setShowDialog(false);
     }
   };
+
   return (
     <>
       {showDialog && (
@@ -196,49 +253,57 @@ export default function TableProduct() {
           updateData={updateDataHandler}
         ></FormDialog>
       )}
-      <div>
-        <div
-          style={{
-            marginTop: "79px",
-            color: "red",
-            backgoundColor: "white",
-            fontSize: "xx-large",
-          }}
-        >
-          Danh sách sản phẩm
-        </div>
+      <div
+        style={{
+          marginTop: "30px",
 
-        <Card>
-          <CardContent>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={12} sm={2}>
-                <Sort />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <Search />
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-        <br />
-        <Box display="flex" justifyContent="flex-end" p={1}>
-          {" "}
-          <Button variant="contained" color="secondary" onClick={handleCreate}>
-            Thêm Sản Phẩm
-          </Button>{" "}
-        </Box>
+          backgoundColor: "white",
+          fontSize: "xx-large",
+          marginLeft: "80px",
+        }}
+      >
+        Danh sách sản phẩm
       </div>
+      <Card style={{ marginLeft: "80px", width: "90%" }}>
+        <CardContent>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={2}>
+              <Sort />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Search search={search} onSearch={searchChangeHandler} />
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+      <br />
+      <Box
+        style={{
+          overflowX: "auto",
+          marginLeft: "80px",
+          width: "90%",
+          marginBottom: "32px",
+        }}
+        display="flex"
+        justifyContent="flex-end"
+      >
+        {" "}
+        <Button variant="contained" color="primary" onClick={handleCreate}>
+          Thêm Danh Mục
+        </Button>{" "}
+      </Box>
 
       <TableContainer
         component={Paper}
         style={{
-          maxHeight: "440px",
+          // maxHeight: "414px",
           overflowX: "auto",
-          width: "100%",
+          width: "90%",
+          marginLeft: "80px",
+          maxHeight: "500px",
         }}
       >
         <Table
-          style={{ margin: "1px" }}
           stickyHeader
           aria-label="sticky table"
           size="small"
@@ -259,38 +324,29 @@ export default function TableProduct() {
               >
                 Sản phẩm
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold", width: "10px" }}
+              >
                 Hình ảnh
               </TableCell>
               <TableCell
                 align="left "
-                style={{ fontWeight: "bold", width: "321px" }}
+                style={{ fontWeight: "bold", width: "300px" }}
               >
                 Miêu tả
               </TableCell>
-              <TableCell
-                align="right"
-                style={{ fontWeight: "bold", width: "70px" }}
-              >
-                Thành tiền
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold", width: "75px" }}
-              >
-                Tình trạng
-              </TableCell>
+
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "217px" }}
+                style={{ fontWeight: "bold", width: "150px" }}
               >
                 Thao tác
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {console.log("DataTable", DataTable)}
-            {DataTable.map((row) => (
+            {filtered.map((row) => (
               <TableRow key={row.nodot}>
                 <TableCell align="center" component="th" scope="row">
                   {row.nodot}
@@ -306,41 +362,39 @@ export default function TableProduct() {
                   />
                 </TableCell>
                 <TableCell align="left">{row.desc}</TableCell>
-                <TableCell align="right">{row.money}</TableCell>
-                <TableCell align="left">{row.status}</TableCell>
-                <TableCell align="left">
-                  <Grid container spacing={[20, 20]}>
+
+                <TableCell align="center">
+                  <Grid container spacing={[20, 20]} justifyContent="center">
                     <Grid xs=" auto ">
-                      <Button
+                      <IconButton
                         onClick={() => handleRead(row.id)}
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         style={{ margin: 5 }}
                       >
-                        Xem
-                      </Button>
+                        <Visibility />
+                      </IconButton>
                     </Grid>
 
                     <Grid xs="auto">
-                      <Button
+                      <IconButton
                         onClick={() => handleDelete(row.id)}
                         variant="contained"
                         style={{ margin: 5 }}
                         color="secondary"
                       >
-                        Xóa
-                      </Button>
+                        <DeleteIcon />
+                      </IconButton>
                     </Grid>
 
                     <Grid xs="auto">
-                      <Button
+                      <IconButton
                         variant="contained"
-                        color="secondary"
                         style={{ margin: 5 }}
                         onClick={() => handleUpdate(row.id)}
                       >
-                        Sửa
-                      </Button>
+                        <SystemUpdateAltIcon />
+                      </IconButton>
                     </Grid>
                   </Grid>
                 </TableCell>

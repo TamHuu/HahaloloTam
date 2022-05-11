@@ -1,45 +1,16 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import ComboBox from "./ComboBox";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import { Avatar, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { DialogTitle } from "@material-ui/core";
 import { DialogContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { DialogActions } from "@material-ui/core";
-
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <TextField id="TenSp" label="Tên Sản Phẩm" />
-      <TextField id="Images" label="Hình ảnh" variant="filled" />
-      <TextField id="Desc" label="Miêu tả" variant="outlined" />
-      <TextField id="money" label="Thành tiền" variant="outlined" />
-      <TextField id="status" label="Tình trạng" variant="outlined" />
-      <ComboBox />
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
 
 export default function CustomizedDialogs(props) {
   const [name, setName] = useState(props.row.name || "");
   const [image, setImage] = useState(props.row.image || "");
   const [desc, setDesc] = useState(props.row.desc || "");
   const [money, setMoney] = useState(props.row.money || "");
-  // const [status, setStatus] = useState(props.row.status || "");
 
   const handleClose = () => {
     props.setShowDialog(false);
@@ -58,7 +29,6 @@ export default function CustomizedDialogs(props) {
       image,
       desc,
       money,
-      // status,
     });
   };
 
@@ -73,18 +43,10 @@ export default function CustomizedDialogs(props) {
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
-          {props.row.image !== undefined && (
-            <Avatar
-              alt="Cindy Baker"
-              variant="square"
-              src={props.row.image}
-              style={{ width: "250px", height: "250px", marginBottom: "16px" }}
-            />
-          )}
           <TextField
             id="TenSp"
             style={{ marginBottom: "16px" }}
-            label="Tên Sản Phẩm"
+            label="Tên Danh mục"
             variant="outlined"
             fullWidth={true}
             value={name}
@@ -93,16 +55,9 @@ export default function CustomizedDialogs(props) {
             }}
             onChange={(e) => setName(e.target.value)}
           />
-          <TextField
-            id="TenSp"
-            style={{ marginBottom: "16px" }}
-            label="Url Image"
-            variant="outlined"
-            fullWidth={true}
-            value={image}
-            InputProps={{
-              readOnly: props.editDialog,
-            }}
+          <img
+            src={image}
+            alt="bg"
             onChange={(e) => setImage(e.target.value)}
           />
           <TextField
@@ -119,6 +74,18 @@ export default function CustomizedDialogs(props) {
             }}
             onChange={(e) => setDesc(e.target.value)}
           />
+          <TextField
+            id="money"
+            style={{ marginBottom: "16px" }}
+            label="Thành tiền"
+            variant="outlined"
+            fullWidth={true}
+            value={money}
+            InputProps={{
+              readOnly: props.editDialog,
+            }}
+            onChange={(e) => setMoney(e.target.value)}
+          />
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -130,16 +97,6 @@ export default function CustomizedDialogs(props) {
         >
           Thoát
         </Button>
-        {!props.editDialog && (
-          <Button
-            autoFocus
-            color="secondary"
-            onClick={handleSave}
-            variant="contained"
-          >
-            Lưu
-          </Button>
-        )}
       </DialogActions>
     </Dialog>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-
+import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,27 +16,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleSelect() {
+export default function NativeSelects() {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [state, setState] = React.useState({
+    age: "",
+    name: "hai",
+  });
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    const name = event.target.name;
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
   };
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Sắp xếp</InputLabel>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel htmlFor="outlined-age-native-simple">Sắp xếp</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
+          style={{ width: "180px" }}
+          native
+          value={state.age}
           onChange={handleChange}
+          label="Age"
+          inputProps={{
+            name: "age",
+            id: "outlined-age-native-simple",
+          }}
         >
-          <MenuItem value={10}>Thứ tự tăng dần</MenuItem>
-          <MenuItem value={20}>Thứ tự giảm dần</MenuItem>
-          <MenuItem value={30}>Theo tên sản phẩm</MenuItem>
+          {/* <option aria-label="None" value="" /> */}
+          <option value={10}>Thứ tự tăng dần</option>
+          <option value={20}>Thứ tự giảm dần</option>
+          <option value={30}>Theo tên</option>
         </Select>
       </FormControl>
     </div>

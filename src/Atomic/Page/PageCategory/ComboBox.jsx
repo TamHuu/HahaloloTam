@@ -3,20 +3,6 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-export default function ComboBox() {
-  return (
-    <Autocomplete
-      id="combo-box-demo"
-      options={rows}
-      getOptionLabel={(option) => option.status}
-      style={{ width: 300 }}
-      renderInput={(params) => (
-        <TextField {...params} label="Tình trạng" variant="outlined" />
-      )}
-    />
-  );
-}
-
 const rows = [
   {
     id: "SP1",
@@ -39,3 +25,18 @@ const rows = [
     status: "hết hàng",
   },
 ];
+
+export default function ComboBox() {
+  return (
+    <Autocomplete
+      id="combo-box-demo"
+      options={rows}
+      fullWidth={true}
+      getOptionLabel={(option) => option.status}
+      style={{ width: 300 }}
+      renderInput={(params) => (
+        <TextField {...params} label="Tình trạng" variant="outlined" />
+      )}
+    />
+  );
+}

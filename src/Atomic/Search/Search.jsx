@@ -3,14 +3,13 @@ import TextField from "@material-ui/core/TextField";
 import { InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
-export default function Search() {
+export default function Search(props) {
   return (
     <TextField
-      label="Tìm kiếm sản phẩm"
       placeholder="Tìm kiếm..."
       fullWidth
       style={{
-        maxWidth: "300px",
+        maxWidth: "200px",
         // background: "#fff",
         borderRadius: "4px",
       }}
@@ -25,6 +24,8 @@ export default function Search() {
       }}
       multiline
       variant="outlined"
+      value={props.search}
+      onChange={(e) => props.onSearch(e.target.value)}
     />
   );
 }

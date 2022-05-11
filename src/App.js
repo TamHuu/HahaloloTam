@@ -65,14 +65,17 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
+    height: "100vh",
     backgroundSize: "cover",
+    paddingTop: "48px",
+    paddingBottom: "48px",
+
     // padding: theme.spacing(3),
     backgroundImage:
-      "url(https://www.highlandscoffee.com.vn/vnt_upload/weblink/HCO-7666-CAFFEINE-FIX-DIGITAL-WEB-1440X460.jpg)",
-    backgroundPosition: "bottom",
+      "url(https://images.unsplash.com/photo-1552010099-5dc86fcfaa38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw0NDYzMzkzfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)",
+    // backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
-    padding: "80px",
   },
 }));
 function App() {
