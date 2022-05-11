@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -7,6 +6,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { green } from "@material-ui/core/colors";
+import {
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 import {
   Avatar,
   CardContent,
@@ -21,7 +26,7 @@ import Search from "../../Search/Search";
 import FormDialog from "../PageCategory/FormDialog";
 import Sort from "../../Sort/Sort";
 import { Visibility } from "@material-ui/icons";
-import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 // import _ from "lodash";
 
@@ -196,7 +201,11 @@ export default function TableProduct() {
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
-
+  const theme = createTheme({
+    palette: {
+      primary: green,
+    },
+  });
   let filtered = DataTable;
 
   if (search) {
@@ -300,9 +309,11 @@ export default function TableProduct() {
         justifyContent="flex-end"
       >
         {" "}
-        <Button variant="contained" color="primary" onClick={handleCreate}>
-          Thêm Danh Mục
-        </Button>{" "}
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" color="primary" onClick={handleCreate}>
+            Thêm sản phẩm
+          </Button>
+        </ThemeProvider>
       </Box>
 
       <TableContainer
@@ -338,7 +349,7 @@ export default function TableProduct() {
               </TableCell>
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "10px" }}
+                style={{ fontWeight: "bold", width: "100px" }}
               >
                 Hình ảnh
               </TableCell>
@@ -414,14 +425,16 @@ export default function TableProduct() {
                     </Grid>
 
                     <Grid xs="auto">
-                      <IconButton
-                        onClick={() => handleDelete(row.id)}
-                        variant="contained"
-                        style={{ margin: 5 }}
-                        color="secondary"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                      <ThemeProvider theme={theme}>
+                        <IconButton
+                          onClick={() => handleDelete(row.id)}
+                          variant="contained"
+                          style={{ margin: 5 }}
+                          color="secondary"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ThemeProvider>
                     </Grid>
 
                     <Grid xs="auto">
@@ -430,7 +443,7 @@ export default function TableProduct() {
                         style={{ margin: 5 }}
                         onClick={() => handleUpdate(row.id)}
                       >
-                        <SystemUpdateAltIcon />
+                        <EditIcon />
                       </IconButton>
                     </Grid>
                   </Grid>

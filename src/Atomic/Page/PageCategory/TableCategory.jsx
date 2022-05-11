@@ -218,9 +218,9 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="left"
-                style={{ fontWeight: "bold", width: "80px" }}
+                style={{ fontWeight: "bold", width: "40px" }}
               >
-                Sản phẩm
+                Danh mục
               </TableCell>
               <TableCell
                 align="left"
@@ -230,14 +230,14 @@ export default function BasicTable({ clickHandler }) {
               </TableCell>
               <TableCell
                 align="center "
-                style={{ fontWeight: "bold", width: "300px" }}
+                style={{ fontWeight: "bold", width: "250px" }}
               >
                 Miêu tả
               </TableCell>
 
               <TableCell
                 align="center"
-                style={{ fontWeight: "bold", width: "250px" }}
+                style={{ fontWeight: "bold", width: "100px" }}
               >
                 Thao tác
               </TableCell>
@@ -251,9 +251,9 @@ export default function BasicTable({ clickHandler }) {
                 </TableCell>
 
                 <TableCell align="left">{row.name}</TableCell>
-                <TableCell align="left">
+                <TableCell align="left" style={{ textAlign: "center" }}>
                   <Avatar
-                    style={{ height: "100px", width: "100px", padding: "5px" }}
+                    style={{ height: "100px", width: "revert", padding: "5px" }}
                     alt="#"
                     src={row.image}
                     variant="square"

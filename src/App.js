@@ -67,15 +67,15 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: "100vh",
-    backgroundSize: "cover",
+
     paddingTop: "48px",
     paddingBottom: "48px",
 
     // padding: theme.spacing(3),
     backgroundImage:
-      "url(https://images.unsplash.com/photo-1552010099-5dc86fcfaa38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw0NDYzMzkzfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)",
+      "url(https://images.unsplash.com/photo-1500631195312-e3a9a5819f92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODh8fGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)",
     // backgroundPosition: "bottom",
-    backgroundRepeat: "no-repeat",
+    backgroundRepeat: "repeat",
   },
 }));
 function App() {
