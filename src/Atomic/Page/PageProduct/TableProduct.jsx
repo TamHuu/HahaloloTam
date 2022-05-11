@@ -23,11 +23,12 @@ import {
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import Search from "../../Search/Search";
-import FormDialog from "../PageCategory/FormDialog";
+import FormDialog from "../PageCategory/EditCreateDialog";
 import Sort from "../../Sort/Sort";
 import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import _ from "lodash";
 // import _ from "lodash";
 
 const useStyles = makeStyles({
@@ -201,6 +202,7 @@ export default function TableProduct() {
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
+  const [valueSelect, setValueSelect] = useState("");
   const theme = createTheme({
     palette: {
       primary: green,
@@ -213,6 +215,15 @@ export default function TableProduct() {
       item.name.toLowerCase().startsWith(search.toLowerCase())
     );
   }
+
+  if (valueSelect === "nameIncrease")
+    filtered = _.orderBy(filtered, ["name"], ["asc"]);
+  else if (valueSelect === "nameDecrease")
+    filtered = _.orderBy(filtered, ["name"], ["desc"]);
+  else if (valueSelect === "noDotIncrease")
+    filtered = _.orderBy(filtered, ["nodot"], ["asc"]);
+  else if (valueSelect === "noDotDecrease")
+    filtered = _.orderBy(filtered, ["nodot"], ["desc"]);
 
   const searchChangeHandler = (value) => {
     setSearch(value);
@@ -263,6 +274,10 @@ export default function TableProduct() {
     }
   };
 
+  const selectChangeHandler = (value) => {
+    setValueSelect(value);
+  };
+
   return (
     <>
       {showDialog && (
@@ -289,7 +304,10 @@ export default function TableProduct() {
         <CardContent>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} sm={2}>
-              <Sort />
+              <Sort
+                valueSelect={valueSelect}
+                onChangeSelect={selectChangeHandler}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Search search={search} onSearch={searchChangeHandler} />

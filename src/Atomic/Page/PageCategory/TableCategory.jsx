@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
-import FormDialog from "./FormDialog";
+import FormDialog from "./EditCreateDialog";
 import { green } from "@material-ui/core/colors";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
@@ -82,6 +82,7 @@ export default function BasicTable({ clickHandler }) {
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
+
   const theme = createTheme({
     palette: {
       primary: green,
