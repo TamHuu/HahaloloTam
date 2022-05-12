@@ -9,7 +9,8 @@ export default function Search(props) {
       placeholder="Tìm kiếm..."
       fullWidth
       style={{
-        maxWidth: "200px",
+        marginLeft: "171px",
+        maxWidth: "256px",
         // background: "#fff",
         borderRadius: "4px",
       }}

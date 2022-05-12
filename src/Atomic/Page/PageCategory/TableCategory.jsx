@@ -184,9 +184,9 @@ export default function BasicTable({ clickHandler }) {
       <Box
         style={{
           overflowX: "auto",
-          marginLeft: "80px",
+          marginLeft: "70px",
           width: "90%",
-          marginBottom: "32px",
+          marginBottom: "20px",
         }}
         display="flex"
         justifyContent="flex-end"

@@ -24,7 +24,7 @@ export default function NativeSelects(props) {
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel htmlFor="outlined-age-native-simple">Sắp xếp</InputLabel>
         <Select
-          style={{ width: "180px" }}
+          style={{ width: "256px" }}
           native
           value={props.valueSelect}
           onChange={(e) => props.onChangeSelect(e.target.value)}
@@ -35,10 +35,10 @@ export default function NativeSelects(props) {
           }}
         >
           {/* <option aria-label="None" value="" /> */}
-          <option value={"noDotIncrease"}>Số Thứ tự tăng dần</option>
-          <option value={"noDotDecrease"}>Số Thứ tự giảm dần</option>
+          <option value={"noDotIncrease"}>Số thứ tự tăng dần</option>
+          <option value={"noDotDecrease"}>Số thứ tự giảm dần</option>
           <option value={"nameIncrease"}>Sắp xếp tăng dần theo tên</option>
-          <option value={"nameDecrease"}>Sắp xếp giảm dần theo tênn</option>
+          <option value={"nameDecrease"}>Sắp xếp giảm dần theo tên</option>
         </Select>
       </FormControl>
     </div>

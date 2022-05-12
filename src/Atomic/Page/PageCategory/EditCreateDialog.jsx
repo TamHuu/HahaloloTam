@@ -69,7 +69,7 @@ export default function CustomizedDialogs(props) {
       open={true}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Sản phẩm
+        Danh mục
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
