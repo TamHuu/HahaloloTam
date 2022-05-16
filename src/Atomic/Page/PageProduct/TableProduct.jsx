@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { green } from "@material-ui/core/colors";
+import AlertDialog from "../PageCategory/AlertDialog";
 import {
   createTheme,
   makeStyles,
@@ -23,11 +24,11 @@ import {
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import Search from "../../Search/Search";
-import FormDialog from "../PageCategory/EditCreateDialog";
+import FormEditProduct from "./EditProduct";
 import Sort from "../../Sort/Sort";
 import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import _ from "lodash";
 // import _ from "lodash";
 
@@ -169,7 +170,7 @@ const DataProduct = [
     desc: "Nếu bạn là người yêu thích những gì mới mẻ và sành điệu để khơi nguồn cảm hứng. Hãy thưởng thức ngay các món nước đá xay độc đáo mang hương vị tự nhiên tại Highlands Coffee để đánh thức mọi giác quan của bạn, giúp bạn luôn căng tràn sức sống.",
     size: 50,
     money: "200000Đ",
-    status: "còn hàng",
+    status: "hết hàng",
   },
   {
     id: "SP13",
@@ -181,7 +182,7 @@ const DataProduct = [
 
     size: 50,
     money: "200000Đ",
-    status: "còn hàng",
+    status: "hết hàng",
   },
   {
     id: "SP14",
@@ -192,7 +193,7 @@ const DataProduct = [
     desc: "Còn gì tuyệt vời hơn khi kết hợp thưởng thức đồ uống của bạn cùng với những chiếc bánh ngọt ngon tinh tế được làm thủ công ngay tại bếp bánh của Highlands Coffee. Những chiếc bánh của chúng tôi mang hương vị đặc trưng của ẩm thực Việt và còn là sự Tận Tâm, gửi gắm mà chúng tôi dành cho Quý khách hàng.",
     size: 50,
     money: "200000Đ",
-    status: "còn hàng",
+    status: "hết hàng",
   },
 ];
 export default function TableProduct() {
@@ -203,6 +204,7 @@ export default function TableProduct() {
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
   const [valueSelect, setValueSelect] = useState("");
+
   const theme = createTheme({
     palette: {
       primary: green,
@@ -229,7 +231,7 @@ export default function TableProduct() {
     setSearch(value);
   };
 
-  const handleDelete = (id) => {
+  const removeChangeHandler = (id) => {
     setDataTable(DataTable.filter((item) => item.id !== id));
   };
 
@@ -281,13 +283,13 @@ export default function TableProduct() {
   return (
     <>
       {showDialog && (
-        <FormDialog
+        <FormEditProduct
           setShowDialog={setShowDialog}
           row={dataDialog}
           editDialog={editDialog}
           setEditDialog={setEditDialog}
           updateData={updateDataHandler}
-        ></FormDialog>
+        ></FormEditProduct>
       )}
       <div
         style={{
@@ -443,16 +445,19 @@ export default function TableProduct() {
                     </Grid>
 
                     <Grid xs="auto">
-                      <ThemeProvider theme={theme}>
-                        <IconButton
+                      <AlertDialog
+                        id={row.id}
+                        onRemove={removeChangeHandler}
+                        title={"Bạn có chắc muốn xóa sản phẩm này ?"}
+                      />
+                      {/* <IconButton
                           onClick={() => handleDelete(row.id)}
                           variant="contained"
                           style={{ margin: 5 }}
                           color="secondary"
                         >
                           <DeleteIcon />
-                        </IconButton>
-                      </ThemeProvider>
+                        </IconButton> */}
                     </Grid>
 
                     <Grid xs="auto">

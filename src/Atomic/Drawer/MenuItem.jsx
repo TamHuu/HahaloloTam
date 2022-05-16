@@ -1,13 +1,13 @@
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { ShopOutlined } from "@material-ui/icons";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 import React from "react";
-import MailIcon from "@material-ui/icons/Mail";
+import FreeBreakfastIcon from "@material-ui/icons/FreeBreakfast";
 
 const MenuItem = ({ text, index }) => {
   return (
     <ListItem button key={text}>
       <ListItemIcon>
-        {index % 2 === 0 ? <ShopOutlined /> : <MailIcon />}
+        {index % 2 === 0 ? <ListAltIcon /> : <FreeBreakfastIcon />}
       </ListItemIcon>
       <ListItemText primary={text} />
     </ListItem>

@@ -7,11 +7,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
 import FormDialog from "./EditCreateDialog";
 import { green } from "@material-ui/core/colors";
+import AlertDialog from "./AlertDialog";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   Avatar,
@@ -24,6 +25,7 @@ import {
 } from "@material-ui/core";
 import Search from "../../Search/Search";
 import Sort from "../../Sort/Sort";
+import _ from "lodash";
 const useStyles = makeStyles({
   table: {
     minWidth: "650px",
@@ -31,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-const rows = [
+export const rows = [
   {
     id: "SP1",
     nodot: 1,
@@ -81,13 +83,16 @@ export default function BasicTable({ clickHandler }) {
   const [showDialog, setShowDialog] = useState(false);
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
+
   const [search, setSearch] = useState("");
+  const [valueSelect, setValueSelect] = useState("");
 
   const theme = createTheme({
     palette: {
       primary: green,
     },
   });
+  //Tìm kiếm
   let filtered = DataTable;
 
   if (search) {
@@ -95,34 +100,42 @@ export default function BasicTable({ clickHandler }) {
       item.name.toLowerCase().startsWith(search.toLowerCase())
     );
   }
+
+  if (valueSelect === "nameIncrease")
+    filtered = _.orderBy(filtered, ["name"], ["asc"]);
+  else if (valueSelect === "nameDecrease")
+    filtered = _.orderBy(filtered, ["name"], ["desc"]);
+  else if (valueSelect === "noDotIncrease")
+    filtered = _.orderBy(filtered, ["nodot"], ["asc"]);
+  else if (valueSelect === "noDotDecrease")
+    filtered = _.orderBy(filtered, ["nodot"], ["desc"]);
+
   const searchChangeHandler = (value) => {
     setSearch(value);
   };
-
-  const handleDelete = (id) => {
-    setDataTable(DataTable.filter((item) => item.id !== id));
+  //Sắp xếp
+  const selectChangeHandler = (value) => {
+    setValueSelect(value);
   };
-
+  //Xóa
+  const removeChangeHandler = (id) => {
+    setDataTable(DataTable.filter((item) => item.id !== id));
+    // setRemove(id);
+  };
+  //Xem
   const handleRead = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id);
     setDataDialog(DataTable[idRow]);
     setEditDialog(true);
     setShowDialog(true);
   };
-
+  //Sửa
   const handleUpdate = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id); //
     setDataDialog(DataTable[idRow]);
     setShowDialog(true);
     setEditDialog(false);
   };
-
-  const handleCreate = () => {
-    setDataDialog({});
-    setShowDialog(true);
-    setEditDialog(false);
-  };
-
   const updateDataHandler = (item) => {
     console.log(item);
 
@@ -144,6 +157,12 @@ export default function BasicTable({ clickHandler }) {
       setDataTable(tempDataTable);
       setShowDialog(false);
     }
+  };
+  //Thêm
+  const handleCreate = () => {
+    setDataDialog({});
+    setShowDialog(true);
+    setEditDialog(false);
   };
 
   return (
@@ -172,7 +191,10 @@ export default function BasicTable({ clickHandler }) {
         <CardContent>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} sm={2}>
-              <Sort />
+              <Sort
+                valueSelect={valueSelect}
+                onChangeSelect={selectChangeHandler}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
               <Search search={search} onSearch={searchChangeHandler} />
@@ -282,16 +304,12 @@ export default function BasicTable({ clickHandler }) {
                         <Visibility />
                       </IconButton>
                     </Grid>
-
-                    <Grid xs="auto">
-                      <IconButton
-                        onClick={() => handleDelete(row.id)}
-                        variant="contained"
-                        style={{ margin: 5 }}
-                        color="secondary"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                    <Grid item xs="auto">
+                      <AlertDialog
+                        id={row.id}
+                        onRemove={removeChangeHandler}
+                        title={"Bạn có chắc muốn xóa danh mục này ?"}
+                      />
                     </Grid>
 
                     <Grid xs="auto">
