@@ -154,23 +154,23 @@ export default function FormEditProduct(props) {
         </Typography>
       </DialogContent>
       <DialogActions>
-        {!props.editDialog && (
-          <Button
-            autoFocus
-            color="green"
-            onClick={handleSave}
-            variant="contained"
-          >
-            Lưu
-          </Button>
-        )}
         <Button
+          style={{ width: "68px" }}
           autoFocus
           color="secondary"
           onClick={handleExit}
           variant="contained"
         >
           Thoát
+        </Button>
+        <Button
+          style={{ width: "68px" }}
+          autoFocus
+          color="green"
+          onClick={handleSave}
+          variant="contained"
+        >
+          Lưu
         </Button>
       </DialogActions>
     </Dialog>

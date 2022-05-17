@@ -276,7 +276,9 @@ export default function BasicTable({ clickHandler }) {
           </TableHead>
           <TableBody>
             {filtered.length === 0 && (
-              <p style={{ marginLeft: "94px" }}>Không còn danh mục nào</p>
+              <p style={{ marginLeft: "20px", width: "300px" }}>
+                Không còn danh mục nào
+              </p>
             )}
             {filtered.map((row) => (
               <TableRow key={row.nodot}>

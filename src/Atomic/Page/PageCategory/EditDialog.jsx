@@ -64,7 +64,7 @@ export default function FormEditProduct(props) {
       open={true}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Sản phẩm
+        Danh mục
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
@@ -82,9 +82,9 @@ export default function FormEditProduct(props) {
             />
           )}
           <TextField
-            id="TenSp"
+            id="TenDanhMuc"
             style={{ marginBottom: "16px" }}
-            label="Tên Sản Phẩm"
+            label="Tên danh mục"
             variant="outlined"
             fullWidth={true}
             value={name}
@@ -124,16 +124,6 @@ export default function FormEditProduct(props) {
         </Typography>
       </DialogContent>
       <DialogActions>
-        {!props.editDialog && (
-          <Button
-            autoFocus
-            color="green"
-            onClick={handleSave}
-            variant="contained"
-          >
-            Lưu
-          </Button>
-        )}
         <Button
           autoFocus
           color="secondary"
@@ -141,6 +131,14 @@ export default function FormEditProduct(props) {
           variant="contained"
         >
           Thoát
+        </Button>
+        <Button
+          autoFocus
+          color="green"
+          onClick={handleSave}
+          variant="contained"
+        >
+          Lưu
         </Button>
       </DialogActions>
     </Dialog>
