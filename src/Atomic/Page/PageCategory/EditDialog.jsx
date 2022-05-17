@@ -8,8 +8,6 @@ import { DialogContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { DialogActions } from "@material-ui/core";
 
-
-
 export default function CustomizedDialogs(props) {
   const [name, setName] = useState(props.row.name || "");
   const [image, setImage] = useState(props.row.image || "");
@@ -98,8 +96,8 @@ export default function CustomizedDialogs(props) {
 
   const handleSave = () => {
     handleNameValid(name);
-    handleImageValid(image)
-    handleDescValid(desc)
+    handleImageValid(image);
+    handleDescValid(desc);
     if (isNameValid && isImageValid && isDescValid) {
       props.updateData({
         nodot: props.row.nodot,
@@ -119,9 +117,7 @@ export default function CustomizedDialogs(props) {
       aria-labelledby="customized-dialog-title"
       open={true}
     >
-      <DialogTitle onClose={handleClose}>
-        Danh mục 
-      </DialogTitle>
+      <DialogTitle onClose={handleClose}>Danh mục</DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
           {props.row.image !== undefined && (

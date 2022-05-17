@@ -6,13 +6,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { green } from "@material-ui/core/colors";
+
 import AlertDialog from "../PageCategory/AlertDialog";
-import {
-  createTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import ViewProduct from "./ViewProductDialog";
+import {  makeStyles } from "@material-ui/core/styles";
 import {
   Avatar,
   CardContent,
@@ -30,7 +27,6 @@ import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
 
 import _ from "lodash";
-// import _ from "lodash";
 
 const useStyles = makeStyles({
   table: {
@@ -204,12 +200,8 @@ export default function TableProduct() {
   const [editDialog, setEditDialog] = useState(true);
   const [search, setSearch] = useState("");
   const [valueSelect, setValueSelect] = useState("");
+  const [viewDialog, setViewDialog] = useState(false);
 
-  const theme = createTheme({
-    palette: {
-      primary: green,
-    },
-  });
   let filtered = DataTable;
 
   if (search) {
@@ -235,12 +227,12 @@ export default function TableProduct() {
     setDataTable(DataTable.filter((item) => item.id !== id));
   };
 
-  const handleRead = (id) => {
-    const idRow = DataTable.findIndex((item) => item.id === id);
-    setDataDialog(DataTable[idRow]);
-    setEditDialog(true);
-    setShowDialog(true);
-  };
+  // const handleRead = (id) => {
+  //   const idRow = DataTable.findIndex((item) => item.id === id);
+  //   setDataDialog(DataTable[idRow]);
+  //   setEditDialog(true);
+  //   setShowDialog(true);
+  // };
 
   const handleUpdate = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id);
@@ -279,9 +271,22 @@ export default function TableProduct() {
   const selectChangeHandler = (value) => {
     setValueSelect(value);
   };
-
+  //Xem
+  const ViewHandler = (id) => {
+    const idRow = DataTable.findIndex((item) => item.id === id);
+    setDataDialog(DataTable[idRow]);
+    setViewDialog(true);
+  };
   return (
     <>
+      {viewDialog && (
+        <ViewProduct
+          onView={ViewHandler}
+          title={"Danh mục"}
+          dataDialog={dataDialog}
+          setViewDialog={setViewDialog}
+        />
+      )}
       {showDialog && (
         <FormEditProduct
           setShowDialog={setShowDialog}
@@ -294,7 +299,7 @@ export default function TableProduct() {
       <div
         style={{
           marginTop: "30px",
-          color: "green",
+          color: "blue",
           backgoundColor: "white",
           fontSize: "xx-large",
           marginLeft: "80px",
@@ -329,11 +334,9 @@ export default function TableProduct() {
         justifyContent="flex-end"
       >
         {" "}
-        <ThemeProvider theme={theme}>
-          <Button variant="contained" color="primary" onClick={handleCreate}>
-            Thêm sản phẩm
-          </Button>
-        </ThemeProvider>
+        <Button variant="contained" color="primary" onClick={handleCreate}>
+          Thêm sản phẩm
+        </Button>
       </Box>
 
       <TableContainer
@@ -432,10 +435,15 @@ export default function TableProduct() {
                   {row.status}
                 </TableCell>
                 <TableCell align="center">
-                  <Grid container spacing={[20, 20]} justifyContent="center">
-                    <Grid xs=" auto ">
+                  <Grid
+                    container
+                    spacing={[20, 20]}
+                    justifyContent="center"
+                    alignItems="baseline"
+                  >
+                    <Grid item xs=" auto ">
                       <IconButton
-                        onClick={() => handleRead(row.id)}
+                        onClick={() => ViewHandler(row.id)}
                         variant="contained"
                         color="primary"
                         style={{ margin: 5 }}

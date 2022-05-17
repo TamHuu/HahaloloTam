@@ -7,13 +7,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import ViewDialog from "./ViewDialog";
 import { Visibility } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
-import FormDialog from "./EditCreateDialog";
-import { green } from "@material-ui/core/colors";
+import FormDialog from "./EditDialog";
+
 import AlertDialog from "./AlertDialog";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+
 import {
   Avatar,
   Box,
@@ -83,15 +83,10 @@ export default function BasicTable({ clickHandler }) {
   const [showDialog, setShowDialog] = useState(false);
   const [dataDialog, setDataDialog] = useState({});
   const [editDialog, setEditDialog] = useState(true);
-
+  const [viewDialog, setViewDialog] = useState(false);
   const [search, setSearch] = useState("");
   const [valueSelect, setValueSelect] = useState("");
 
-  const theme = createTheme({
-    palette: {
-      primary: green,
-    },
-  });
   //Tìm kiếm
   let filtered = DataTable;
 
@@ -123,11 +118,10 @@ export default function BasicTable({ clickHandler }) {
     // setRemove(id);
   };
   //Xem
-  const handleRead = (id) => {
+  const ViewHandler = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id);
     setDataDialog(DataTable[idRow]);
-    setEditDialog(true);
-    setShowDialog(true);
+    setViewDialog(true);
   };
   //Sửa
   const handleUpdate = (id) => {
@@ -167,6 +161,14 @@ export default function BasicTable({ clickHandler }) {
 
   return (
     <>
+      {viewDialog && (
+        <ViewDialog
+          onView={ViewHandler}
+          title={"Danh mục"}
+          dataDialog={dataDialog}
+          setViewDialog={setViewDialog}
+        />
+      )}
       {showDialog && (
         <FormDialog
           setShowDialog={setShowDialog}
@@ -179,7 +181,7 @@ export default function BasicTable({ clickHandler }) {
       <div
         style={{
           marginTop: "30px",
-          color: "green",
+          color: "blue ",
           backgoundColor: "white",
           fontSize: "xx-large",
           marginLeft: "80px",
@@ -215,11 +217,9 @@ export default function BasicTable({ clickHandler }) {
         p={1}
       >
         {" "}
-        <ThemeProvider theme={theme}>
-          <Button variant="contained" color="primary" onClick={handleCreate}>
-            Thêm danh mục
-          </Button>
-        </ThemeProvider>
+        <Button variant="contained" color="primary" onClick={handleCreate}>
+          Thêm danh mục
+        </Button>
       </Box>
 
       <TableContainer
@@ -293,13 +293,17 @@ export default function BasicTable({ clickHandler }) {
                 <TableCell align="left">{row.desc}</TableCell>
 
                 <TableCell align="center">
-                  <Grid container spacing={[20, 20]} justifyContent="center">
-                    <Grid xs=" auto ">
+                  <Grid
+                    container
+                    spacing={[20, 20]}
+                    justifyContent="center"
+                    alignItems="baseline"
+                  >
+                    <Grid item xs="auto">
                       <IconButton
-                        onClick={() => handleRead(row.id)}
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
-                        style={{ margin: 5 }}
+                        onClick={() => ViewHandler(row.id)}
                       >
                         <Visibility />
                       </IconButton>
