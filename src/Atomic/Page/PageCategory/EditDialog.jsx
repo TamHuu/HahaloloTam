@@ -1,89 +1,42 @@
 import React, { useState } from "react";
-
+import PropTypes from "prop-types";
 // import ComboBox from "./ComboBox";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import { Avatar, DialogTitle, TextField } from "@material-ui/core";
+import { Avatar, TextField } from "@material-ui/core";
+import { DialogTitle } from "@material-ui/core";
 import { DialogContent } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { DialogActions } from "@material-ui/core";
 
-export default function CustomizedDialogs(props) {
+function SimpleDialog(props) {
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <TextField id="TenSp" label="Tên Sản Phẩm" />
+      <TextField id="Images" label="Hình ảnh" variant="filled" />
+      <TextField id="Desc" label="Miêu tả" variant="outlined" />
+      <TextField id="money" label="Thành tiền" variant="outlined" />
+      <TextField id="status" label="Tình trạng" variant="outlined" />
+    </Dialog>
+  );
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+};
+
+export default function FormEditProduct(props) {
   const [name, setName] = useState(props.row.name || "");
   const [image, setImage] = useState(props.row.image || "");
   const [desc, setDesc] = useState(props.row.desc || "");
-
-  const [errorMessage, setErrorMessage] = useState({
-    nameError: "",
-    imageError: "",
-    descError: "",
-  });
-
-  const [isNameValid, setIsNameValid] = useState(false);
-  const [isImageValid, setIsImageValid] = useState(false);
-  const [isDescValid, setIsDescValid] = useState(false);
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleNameValid = (value) => {
-    if (value !== "") {
-      setIsNameValid(false);
-      setErrorMessage({
-        ...errorMessage,
-        nameError: "",
-      });
-    } else {
-      setIsNameValid(true);
-      setErrorMessage({
-        ...errorMessage,
-        nameError: "Please input name",
-      });
-    }
-  };
-
-  const handleImageChange = (e) => {
-    setImage(e.target.value);
-  };
-
-  const handleImageValid = (value) => {
-    if (value !== "") {
-      setIsImageValid(false);
-      setErrorMessage({
-        ...errorMessage,
-        imageError: "",
-      });
-    } else {
-      setIsImageValid(true);
-      setErrorMessage({
-        ...errorMessage,
-        imageError: "Please input image url",
-      });
-    }
-  };
-
-  const handleDescChange = (e) => {
-    setDesc(e.target.value);
-  };
-
-  const handleDescValid = (value) => {
-    if (value !== "") {
-      setIsDescValid(false);
-      setErrorMessage({
-        ...errorMessage,
-        descError: "",
-      });
-    } else {
-      setIsDescValid(true);
-      setErrorMessage({
-        ...errorMessage,
-        descError: "Please input desc",
-      });
-    }
-  };
-  // const [money, setMoney] = useState(props.row.money || "");
-  // const [status, setStatus] = useState(props.row.status || "");
 
   const handleClose = () => {
     props.setShowDialog(false);
@@ -95,20 +48,13 @@ export default function CustomizedDialogs(props) {
   };
 
   const handleSave = () => {
-    handleNameValid(name);
-    handleImageValid(image);
-    handleDescValid(desc);
-    if (isNameValid && isImageValid && isDescValid) {
-      props.updateData({
-        nodot: props.row.nodot,
-        id: props.row.id,
-        name: name,
-        image,
-        desc,
-        // money,
-        // status,
-      });
-    }
+    props.updateData({
+      nodot: props.row.nodot,
+      id: props.row.id,
+      name: name,
+      image,
+      desc,
+    });
   };
 
   return (
@@ -117,7 +63,9 @@ export default function CustomizedDialogs(props) {
       aria-labelledby="customized-dialog-title"
       open={true}
     >
-      <DialogTitle onClose={handleClose}>Danh mục</DialogTitle>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        Sản phẩm
+      </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
           {props.row.image !== undefined && (
@@ -129,14 +77,12 @@ export default function CustomizedDialogs(props) {
                 width: "250px",
                 height: "250px",
                 marginBottom: "16px",
-                marginLeft: "94px",
+                marginLeft: "131px",
               }}
             />
           )}
           <TextField
             id="TenSp"
-            error={isNameValid}
-            helperText={errorMessage.nameError}
             style={{ marginBottom: "16px" }}
             label="Tên Sản Phẩm"
             variant="outlined"
@@ -145,13 +91,11 @@ export default function CustomizedDialogs(props) {
             InputProps={{
               readOnly: props.editDialog,
             }}
-            onChange={handleNameChange}
+            onChange={(e) => setName(e.target.value)}
           />
           {!props.editDialog && (
             <TextField
-              id="TenSp"
-              error={isImageValid}
-              helperText={errorMessage.imageError}
+              id="image"
               style={{ marginBottom: "16px" }}
               label="Url Image"
               variant="outlined"
@@ -160,13 +104,11 @@ export default function CustomizedDialogs(props) {
               InputProps={{
                 readOnly: props.editDialog,
               }}
-              onChange={handleImageChange}
+              onChange={(e) => setImage(e.target.value)}
             />
           )}
           <TextField
             id="desc"
-            error={isDescValid}
-            helperText={errorMessage.descError}
             style={{ marginBottom: "16px" }}
             label="Miêu tả"
             variant="outlined"
@@ -177,7 +119,7 @@ export default function CustomizedDialogs(props) {
             InputProps={{
               readOnly: props.editDialog,
             }}
-            onChange={handleDescChange}
+            onChange={(e) => setDesc(e.target.value)}
           />
         </Typography>
       </DialogContent>
