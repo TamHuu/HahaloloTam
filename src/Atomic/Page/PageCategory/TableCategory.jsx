@@ -254,14 +254,14 @@ export default function BasicTable({ clickHandler }) {
                 Danh mục
               </TableCell>
               <TableCell
-                align="left"
-                style={{ fontWeight: "bold", width: "10px" }}
+                align="center"
+                style={{ fontWeight: "bold", width: "70px" }}
               >
                 Hình ảnh
               </TableCell>
               <TableCell
                 align="center "
-                style={{ fontWeight: "bold", width: "250px" }}
+                style={{ fontWeight: "bold", width: "300px" }}
               >
                 Miêu tả
               </TableCell>
@@ -275,6 +275,9 @@ export default function BasicTable({ clickHandler }) {
             </TableRow>
           </TableHead>
           <TableBody>
+            {filtered.length === 0 && (
+              <p style={{ marginLeft: "94px" }}>Không còn danh mục nào</p>
+            )}
             {filtered.map((row) => (
               <TableRow key={row.nodot}>
                 <TableCell align="center" component="th" scope="row">
@@ -282,7 +285,7 @@ export default function BasicTable({ clickHandler }) {
                 </TableCell>
 
                 <TableCell align="left">{row.name}</TableCell>
-                <TableCell align="left" style={{ textAlign: "center" }}>
+                <TableCell align="center" style={{ textAlign: "center" }}>
                   <Avatar
                     style={{ height: "100px", width: "revert", padding: "5px" }}
                     alt="#"

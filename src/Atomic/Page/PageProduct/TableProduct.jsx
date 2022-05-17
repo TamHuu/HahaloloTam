@@ -227,13 +227,6 @@ export default function TableProduct() {
     setDataTable(DataTable.filter((item) => item.id !== id));
   };
 
-  // const handleRead = (id) => {
-  //   const idRow = DataTable.findIndex((item) => item.id === id);
-  //   setDataDialog(DataTable[idRow]);
-  //   setEditDialog(true);
-  //   setShowDialog(true);
-  // };
-
   const handleUpdate = (id) => {
     const idRow = DataTable.findIndex((item) => item.id === id);
     setDataDialog(DataTable[idRow]);
@@ -408,6 +401,11 @@ export default function TableProduct() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {filtered.length === 0 && (
+              <p style={{ marginLeft: "20px", width: "200px" }}>
+                Không còn sản phẩm nào
+              </p>
+            )}
             {filtered.map((row) => (
               <TableRow key={row.nodot}>
                 <TableCell align="center" component="th" scope="row">
@@ -419,7 +417,7 @@ export default function TableProduct() {
                   <Avatar
                     style={{
                       height: "100px",
-                      width: "100px",
+                      width: "170px",
                       padding: "5px",
                     }}
                     alt="#"

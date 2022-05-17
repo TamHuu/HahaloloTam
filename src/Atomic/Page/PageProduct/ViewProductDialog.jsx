@@ -71,7 +71,7 @@ export default function ViewProduct(props) {
           onClose={handleClose}
           open={true}
         >
-          Danh Mục
+          Sản phẩm
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
