@@ -50,15 +50,17 @@ export default function FormEditProduct(props) {
   };
 
   const handleSave = () => {
-    props.updateData({
-      nodot: props.row.nodot,
-      id: props.row.id,
-      name: name,
-      image,
-      desc,
-      money,
-      status,
-    });
+    if ((name, image, money, status)) {
+      props.updateData({
+        nodot: props.row.nodot,
+        id: props.row.id,
+        name: name,
+        image,
+        desc,
+        money,
+        status,
+      });
+    }
   };
 
   return (
@@ -87,6 +89,8 @@ export default function FormEditProduct(props) {
           )}
           <TextField
             id="TenSp"
+            error={!name}
+            helperText={!name && "Phải nhập miêu tả"}
             style={{ marginBottom: "16px" }}
             label="Tên Sản Phẩm"
             variant="outlined"
@@ -100,6 +104,8 @@ export default function FormEditProduct(props) {
           {!props.editDialog && (
             <TextField
               id="image"
+              error={!image}
+              helperText={!image && "Phải nhập hình ảnh"}
               style={{ marginBottom: "16px" }}
               label="Url Image"
               variant="outlined"
@@ -113,6 +119,8 @@ export default function FormEditProduct(props) {
           )}
           <TextField
             id="desc"
+            error={!desc}
+            helperText={!desc && "Phải nhập miêu tả"}
             style={{ marginBottom: "16px" }}
             label="Miêu tả"
             variant="outlined"
@@ -126,6 +134,8 @@ export default function FormEditProduct(props) {
             onChange={(e) => setDesc(e.target.value)}
           />
           <TextField
+            error={!money}
+            helperText={!money && "Phải nhập miêu tả"}
             id="money"
             style={{ marginBottom: "16px" }}
             label="Thành tiền"
@@ -140,6 +150,8 @@ export default function FormEditProduct(props) {
           />
           <TextField
             id="status"
+            error={!status}
+            helperText={!status && "Phải nhập miêu tả"}
             style={{ marginBottom: "16px" }}
             label="Tình trạng"
             variant="outlined"

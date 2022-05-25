@@ -48,13 +48,15 @@ export default function FormEditProduct(props) {
   };
 
   const handleSave = () => {
-    props.updateData({
-      nodot: props.row.nodot,
-      id: props.row.id,
-      name: name,
-      image,
-      desc,
-    });
+    if ((name, image, desc)) {
+      props.updateData({
+        nodot: props.row.nodot,
+        id: props.row.id,
+        name: name,
+        image,
+        desc,
+      });
+    }
   };
 
   return (
@@ -83,6 +85,8 @@ export default function FormEditProduct(props) {
           )}
           <TextField
             id="TenDanhMuc"
+            error={!name}
+            helperText={!name && "Phải nhập tên danh mục"}
             style={{ marginBottom: "16px" }}
             label="Tên danh mục"
             variant="outlined"
@@ -95,6 +99,8 @@ export default function FormEditProduct(props) {
           />
           {!props.editDialog && (
             <TextField
+              error={!image}
+              helperText={!image && "Phải nhập url"}
               id="image"
               style={{ marginBottom: "16px" }}
               label="Url Image"
@@ -109,6 +115,8 @@ export default function FormEditProduct(props) {
           )}
           <TextField
             id="desc"
+            error={!desc}
+            helperText={!desc && "Phải nhập miêu tả"}
             style={{ marginBottom: "16px" }}
             label="Miêu tả"
             variant="outlined"
